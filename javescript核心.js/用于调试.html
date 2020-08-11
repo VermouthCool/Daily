@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>贪吃蛇</title>
+    <style>
+        .container{
+            width: 640px;
+            height: 640px;
+            margin:100px auto;
+            position: relative;
+        }
+        .btn{
+            width: 100%;
+            position: absolute;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background-color: rgba(0, 0 ,0, 0.3);
+            z-index: 2;
+        }
+        .btn button{
+            background: none;
+            border: none;
+            background-size: 100% 100%;
+            cursor: pointer;
+            outline: none;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+        }
+        .start button{
+            width: 200px;
+            height: 80px;
+            background-image: url(https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=396995551,3949263024&fm=26&gp=0.jpg);
+            margin-left: -100px;
+            margin-top: -40px;
+        }
+        .stop{
+            display: none;
+        }
+        .stop button{
+            width: 70px;
+            height: 70px;
+            background-image: url(https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1988840971,2662558208&fm=26&gp=0.jpg);
+            margin-left: -35px;
+            margin-top: -35px;
+        }
+        #snakeWrap{
+            width: 600px;
+            height: 600px;
+            background: #226175;
+            border: 20px solid #7dd9ff;
+            position: relative;
+        }
+        #snakeWrap div{
+            width: 20px;
+            height: 20px;
+        }
+        .snakehead{
+            background-image: url(https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1907232668,542451173&fm=26&gp=0.jpg);
+            background-size: cover;
+        }
+        .snakebody{
+            background-color: #9ddbb1;
+            border-radius: 50%;
+        }
+        .food{
+            background-image: url(https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=4001697536,1588724260&fm=26&gp=0.jpg);
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="btn start"><button></button></div>
+        <div class="btn stop"><button></button></div>
+        <div id="snakeWrap">
+            
+        </div>
+    </div>
+    <script>
+        
+        var sw = 20,sh = 20,tr = 30 ,td = 30;
+        var snake = null;//蛇的实例
+        var food = null;//食物的实例
+        var game = null;//游戏的实例
+        // 创建一个蛇身和蛇头
+        function Square(x,y,classname){
+            this.x=x*sw;
+            this.y=y*sh;
+            this.class=classname;
+            this.viewContent = document.createElement('div');
+            this.viewContent.className = this.class;
+            this.parent=document.getElementById('snakeWrap');
+        }
+        Square.prototype.creat = function(){ 
+            // 创建■dome将其插入页面中
+            this.viewContent.style.position='absolute';
+            this.viewContent.style.width=sw+'px';
+            this.viewContent.style.height=sh+'px';
+            this.viewContent.style.left=this.x+'px';
+            this.viewContent.style.top=this.y+'px';
+            this.parent.appendChild(this.viewContent);
+        }
+        Square.prototype.remove = function(){
+            this.parent.removeChild(this.viewContent);
+        }
+        // 创建蛇
+        function Snake(){
+            this.head = null;
+            this.tail = null;
+            this.pos=[];
+            this.directionNum={//存储蛇走的方向
+                left:{
+                   x:-1,
+                   y:0,
+                   rotate:180
+                },
+                right:{
+                    x:1,
+                    y:0,
+                    rotate:0
+                },
+                up:{
+                    x:0,
+                    y:-1,
+                    rotate:-90
+                },
+                down:{
+                    x:0,
+                    y:1,
+                    rotate:90
+                }
+            }
+        }
+        Snake.prototype.init = function(){
+            //初始化蛇 创建蛇
+            var snakehead = new Square(2,0,'snakehead');
+            snakehead.creat();
+            this.head = snakehead;
+            this.pos.push([2,0]);//蛇头位置
+            var snakebody1=new Square(1,0,'snakebody');
+            snakebody1.creat();
+            this.pos.push([1,0]);
+            var snakebody2=new Square(0,0,'snakebody');
+            snakebody2.creat();
+            this.tail=snakebody2;
+            this.pos.push([0,0]);
+            snakehead.last=null;
+            snakehead.next=snakebody1;
+            snakebody1.last=snakehead;
+            snakebody1.next=snakebody2;
+            snakebody2.last=snakebody1;
+            snakebody2.next=null;
+            // 添加一条属性使蛇有个默认方向前进
+            this.direction=this.directionNum.right;
+        }
+        // 获取蛇头下一个元素的位置并作出相应的动作
+        Snake.prototype.getNextpos=function(){
+            var nextpos=[//蛇头要走的下个点的坐标
+                this.head.x/sw+this.direction.x,
+                this.head.y/sh+this.direction.y
+            ]
+            
+            // 下个点是自己，代表撞到自己，游戏结束
+            var selfCollied=false;
+            this.pos.forEach(function(value){
+                if(value[0]==nextpos[0]&&value[1]==nextpos[1]){
+                    selfCollied=true;
+                }
+            });
+            if(selfCollied){
+               this.strategies.die.call(this);
+                return;
+            }
+            //  下个点是围墙  游戏结束
+            if(nextpos[0]<0||nextpos[1]<0||nextpos[0]>29||nextpos[1]>29){
+                
+                this.strategies.die.call(this);
+                return;
+            }
+            // 下个点是食物，吃掉
+            if(food&&food.pos[0]==nextpos[0]&&food.pos[1]==nextpos[1]){
+                this.strategies.eat.call(this);
+                return;
+            }
+            // 下个点什么都不是，继续走
+            this.strategies.move.call(this);
+        }
+        // 处理碰撞之后的事
+        Snake.prototype.strategies={
+            move:function(format){
+                // 创建一个新的一节身体在旧蛇头的位置
+                var newbody= new Square(this.head.x/sw,this.head.y/sh,'snakebody');
+                // 更新链表的关系
+                this.head.remove();
+                newbody.next=this.head.next;
+                newbody.next.last=newbody;
+                newbody.last=null;
+                
+                newbody.creat();
+                // 创建一个新的蛇头
+                var newhead = new Square(this.head.x/sw+this.direction.x,this.head.y/sw+this.direction.y,'snakehead');
+                // 更新链表关系
+                newhead.next=newbody;
+                newhead.last=null;
+                newbody.last=newhead;
+                newhead.creat();
+                newhead.viewContent.style.transform='rotate('+this.direction.rotate+'deg)';
+                // 更行蛇身体数组
+                this.pos.splice(0,0,[this.head.x/sw+this.direction.x,this.head.y/sw+this.direction.y]);
+                this.head=newhead;
+                if(!format){//如果format为真表示删除
+                    this.tail.remove();
+                    this.tail=this.tail.last;
+                    this.pos.pop();
+                }
+            },
+            eat:function(){
+                this.strategies.move.call(this,true);
+                Creatfood();
+                game.score++;
+            },
+            die:function(){
+                game.over();
+            }
+        }
+        snake = new Snake();
+        
+
+        //创建食物
+        function Creatfood(){
+            var x = null,
+                y = null;
+            var include = true;//循环跳出的条件，true表示食物的坐标在蛇身上，flase表示食物的坐标不在蛇身上；
+            while(include){
+                x=Math.round((Math.random()*29));
+                y=Math.round((Math.random()*29));
+                snake.pos.forEach(function(value){
+                    if(x!=value[0]&&y!=value[1]){
+                    include = false;}
+                })
+            }  
+            //生成食物
+            food = new Square(x,y,'food');
+            food.pos=[x,y];
+            //存储一下事物的坐标与蛇头的下一个位置做对比
+            var foodDom = document.querySelector('.food');
+            if(foodDom){
+                foodDom.style.left=x*sw+'px';
+                foodDom.style.top=y*sh+'px';
+            }else{
+                food.creat();
+            }
+        }
+        
+        //控制游戏
+        function Game(){
+            this.timer=null;
+            this.score = 0;
+        }
+        Game.prototype.init = function(){
+            snake.init();
+          // snake.getNextpos();
+           Creatfood();
+           document.onkeydown = function(ev){
+            if(ev.which==37&&snake.direction!=snake.directionNum.right){//用户按下左键的时候，这条蛇不能正在往右走
+                snake.direction=snake.directionNum.left;
+            }else if(ev.which==38&&snake.direction!=snake.directionNum.down){
+                snake.direction=snake.directionNum.up;
+            }else if(ev.which==39&&snake.direction!=snake.directionNum.left){
+                snake.direction=snake.directionNum.right;
+            }else if(ev.which==40&&snake.direction!=snake.directionNum.top){
+                snake.direction=snake.directionNum.down;
+            }
+        }
+        this.start();
+        }
+        Game.prototype.start = function(){
+            this.timer=setInterval(function(){
+                snake.getNextpos();
+            },200)
+        }
+        Game.prototype.pase=function(){
+            clearInterval(this.timer);
+        }
+        Game.prototype.over=function(){
+            clearInterval(this.timer);
+            alert("你的得分为: " +this.score);
+            // 清楚蛇和食物
+            var snakeWrap = document.getElementById('snakeWrap');
+            snakeWrap.innerHTML='';
+            snake = new Snake();
+            game = new Game();
+            var startbtnWrap = document.querySelector('.start ');
+            startbtnWrap.style.display='block';
+        }
+        //开启游戏
+        game = new Game();
+        var startbtn = document.querySelector(' .start button');
+        startbtn.onclick = function(){
+            startbtn.parentNode.style.display = 'none';
+            game.init();
+        }
+       //
+       var passbtn = document.querySelector('.stop button');
+       var snakeWrap = document.getElementById('snakeWrap');
+        snakeWrap.onclick=function(){
+            game.pase();
+            passbtn.parentNode.style.display='block';
+        }
+        passbtn.onclick=function (){
+            game.start();
+            passbtn.parentNode.style.display='none';
+        }
+    </script>
+</body> 
+</html>

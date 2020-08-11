@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #mine{
+            margin: 50px auto;
+
+        }
+        .level{
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .level button{
+            padding: 5px 15px;
+            background-color: #02a4ad;
+            border: none;
+            color: white;
+            border-radius: 3px;
+            outline: none;
+            cursor: pointer;
+        }
+        .level button.active{
+            background-color: #00abff;
+        }
+        .info{
+            margin-top: 10px;
+            text-align: center;
+        }
+        table{
+            border-spacing: 1px;
+            background-color: #929196;
+            margin: 0 auto;
+        }
+        td{
+            padding: 0;
+            width: 20px;
+            height: 20px;
+            background-color: #ccc;
+            border: 2px solid;
+            border-color: #fff #a1a1a1 #a1a1a1 #fff;
+            text-align: center;
+            line-height: 20px;
+            font-weight: bold;
+        }
+        .mine{
+            background: #d9d9d9 url(https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2454533418,2043079070&fm=26&gp=0.jpg) no-repeat center;
+            background-size: cover;
+        }
+        .flag{
+            background: #ccc url(https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3971316747,2498751674&fm=26&gp=0.jpg) no-repeat center;
+            background-size: cover;
+        }
+        td.zero{
+            border-color: #d9d9d9;
+            background-color: #d9d9d9;
+        }
+        td.one{
+            border-color: #d9d9d9;
+            background-color: #d9d9d9;
+            color: #0332fe;
+        }
+        td.two{
+            border-color: #d9d9d9;
+            background-color: #d9d9d9;
+            color: #019f02;
+        }
+        td.three{
+            border-color: #d9d9d9;
+            background-color: #d9d9d9;
+            color: #ff2600;
+        }
+        td.four{
+            border-color: #d9d9d9;
+            background-color: #d9d9d9;
+            color: #93208f;
+        }
+        td.five{
+            border-color: #d9d9d9;
+            background-color: #d9d9d9;
+            color: #ff7f29;
+        }
+        td.six{
+            border-color: #d9d9d9;
+            background-color: #d9d9d9;
+            color: aqua;
+        }
+        td.seven{
+            border-color: #d9d9d9;
+            background-color: #d9d9d9;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="mine">
+        <div class="level">
+            <button class="active">初级</button>
+            <button>中级</button>
+            <button>高级</button>
+            <button>重新开始</button>
+        </div>
+        <div class="gameBox">
+
+        </div>
+        <div class="info">
+            剩余的雷数: <span class="mainNum"></span>
+        </div>
+    </div>
+    <script>
+        function Mine(tr,td,mineNum){
+            this.tr=tr;
+            this.td=td;
+            this.mineNum=mineNum;//雷的数量
+            this.squares=[];//是个二维数组 存取每个方块的信息
+            this.tds=[];//存储每个格子的dom对象
+            this.surplusMine=mineNum;//剩余的雷的数量
+            this.allRight=false;//判断游戏是否成功
+            this.parent=document.getElementsByClassName("gameBox")[0];
+        }
+        Mine.prototype.radomMun=function(){//
+            var square=new Array(this.td*this.tr)//生成一个新的空数组  长度为格子数；
+            for(var i=0;i<square.length;i++){
+                square[i]=i;
+            }
+            square.sort(function(){return (0.5-Math.random())})
+            return square.slice(0,this.mineNum);
+        }
+        Mine.prototype.init=function(){
+            var rn=this.radomMun();
+            var n=0;//用来找到格子对应的索引
+            for(var i=0;i<this.tr;i++){
+                this.squares[i]=[];
+                for(var j=0;j<this.td;j++){
+                    if(rn.indexOf(n)!=-1){
+                        this.squares[i][j]={type:"mine",x:j,y:i}
+                    }else{
+                        this.squares[i][j]={type:"number",x:j,y:i,value:0}
+                    }
+                    n++
+                }
+            }
+            this.parent.oncontextmenu=function(){
+                return false;
+            }
+            this.upDateNum()
+            this.creatDom();
+            this.mineNumDom=document.querySelector(".mainNum");
+            this.mineNumDom.innerHTML=this.surplusMine;
+        }
+        Mine.prototype.creatDom=function(){
+            var table=document.createElement("table");
+            var This=this;
+            for(var i=0;i<this.tr;i++){
+                var domTr=document.createElement("tr");
+                this.tds[i]=[];
+                for(var j=0;j<this.td;j++){
+                    var domTd=document.createElement("td");
+                    domTd.pos=[i,j];
+                    domTd.onmousedown=function(event){
+                        This.play(event,this);
+                    }
+                    this.tds[i][j]=domTd;
+                    domTr.appendChild(domTd);
+                }
+                table.appendChild(domTr)
+            }
+            this.parent.innerHTML="";
+            this.parent.appendChild(table)
+        }
+        Mine.prototype.getAround=function(square){
+            var x=square.x;
+            var y=square.y;
+            var result=[];//把找到的格子的坐标返回出去
+            for(var i=x-1;i<=x+1;i++){//通过坐标获取四周
+                for(var j=y-1;j<=y+1;j++){
+                    if(i<0||j<0||i>this.td-1||j>this.tr-1||(i==x&&j==y)||this.squares[j][i].type=="mine")
+                    {
+                        continue;
+                    }
+                    result.push([j,i]);
+                }
+            }
+            return result;
+        }
+        //来更新所有的数字
+        Mine.prototype.upDateNum=function(){
+            for(var i=0;i<this.tr;i++){
+                for(var j=0;j<this.td;j++){
+                    //要更新的数字是雷周围的数字
+                    if(this.squares[i][j].type=="number"){
+                        console.log("更新数字")
+                        continue;
+                    }
+                    var num = this.getAround(this.squares[i][j]);
+                    for(var k=0;k<num.length;k++){
+                        this.squares[num[k][0]][num[k][1]].value+=1;
+                    }
+                }
+            }
+        }
+        Mine.prototype.play=function(ev,obj){
+            var This=this;
+            if(ev.which==1 && obj.className!="flag"){
+                var cursquaer=this.squares[obj.pos[0]][obj.pos[1]];
+                var cl=['zero','one','two','three','four','five','six','seven']
+                if(cursquaer.type=="number"){
+                    obj.innerHTML=cursquaer.value;
+                    obj.className=cl[cursquaer.value];
+                    if(cursquaer.value==0){
+                        obj.innerHTML="";
+                        function getAllzero(square){
+                            var around= This.getAround(square);
+                            for(var i=0;i<around.length;i++){
+                                var x=around[i][0];
+                                var y=around[i][1];
+                                This.tds[x][y].className=cl[This.squares[x][y].value];
+                                if(This.squares[x][y].value==0){
+                                    if(!This.tds[x][y].check){
+                                        This.tds[x][y].check=true;
+                                        getAllzero(This.squares[x][y]);
+                                    }
+                                }else{
+                                    //如果四周不为0 则显示出来
+                                    This.tds[x][y].innerHTML=This.squares[x][y].value;
+                                }
+                            }
+                        }
+                        getAllzero(cursquaer);
+                    }
+                }else{
+                    this.gameOver(obj);//点到雷le
+                }
+            }
+            if(ev.which==3){
+                if(obj.className && obj.className!="flag"){
+                   console.log("jian")
+                   return;
+               }
+                obj.className = obj.className=='flag'?'':'flag';
+                if(this.squares[obj.pos[0]][obj.pos[1]]=="mine"){
+                    this.allRight=true;
+                }else{
+                    this.allRight=false;
+                }
+                if(obj.className=="flag"){
+                    this.mineNumDom.innerHTML=--this.surplusMine
+                }else{
+                    this.mineNumDom.innerHTML=++this.surplusMine;
+                }
+                if(this.surplusMine==0){
+                    if(this.allRight){
+                        alert("guole");
+                    }else{
+                        alert("shibai");
+                        this.gameOver();
+                    }
+                }
+            }
+        }
+        Mine.prototype.gameOver=function(clickTd){
+            // 显示所有的雷  2.取消所有格子的点击事件  3.点中的雷框变红
+            for(var i=0;i<this.tr;i++){
+                for(var j=0;j<this.td;j++){
+                   if(this.squares[i][j].type=="mine"){
+                    this.tds[i][j].className="mine";
+                   }
+                   this.tds[i][j].onmousedown=null;
+                }
+            }
+           if(clickTd){
+            clickTd.style.borderColor="f00"
+           }
+        }
+        // var a =new Mine(28,28,99)
+        // a.init()
+        //添加上面按钮的功能
+        var btns=document.querySelectorAll('.level button');
+        var mine=null;//实例
+        var ln=0;//用来表示谁被选中
+        var arr=[[9,9,10],[16,16,28],[28,28,99]]//表示不同的大小
+        for(let i=0;i<btns.length-1;i++){
+            btns[i].onclick=function(){
+                btns[ln].className="";
+                this.className="active";
+                mine=new Mine(...arr[i]);
+                mine.init();
+                ln=i;
+             
+            }
+        }
+        btns[0].onclick();
+        btns[3].onclick=function(){
+            mine.init();
+        }
+    </script>
+</body>
+</html>

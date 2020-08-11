@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    html,body,p,h1,h2,h3,h4,li,a{
+      font: 14px '微软雅黑';
+      margin: 0;
+    }
+    html,body{
+      height: 100%;
+      overflow: hidden;
+    }
+    ul,ol{
+      list-style: none;
+    }
+    .clearfix::after{
+      content: '';
+      display: block;
+      clear: both;
+    }
+    a{
+      display: block;
+      text-decoration: none;
+    }
+    a:active{
+      outline: none;
+    }
+   img{
+     display: block;
+   }
+   a:hover{
+    color: block;
+   }
+   .commonTitle{color: #009ee0;font-size: 80px;line-height: 0.8;font-weight: bold;letter-spacing: -5px;}
+   .commonText{line-height: 1.5;color: white;}
+   /* 头部样式开始 */
+   #head {background-color: white;width: 100%;}
+   #head .headmain{width: 1100px;height: 80px;margin: 0 auto;position: relative;}
+   #head .headmain .logo{float: left;margin-top: 30px;}
+   #head .headmain .nav{float: right;margin-top: 50px;}
+   #head .headmain .nav>ul>li{float: left;margin-left: 40px;position: relative;}
+   #head .headmain .nav>ul>li .up{color: black;position: absolute;width: 0;overflow: hidden;transition: 1s;}
+   #head .headmain .nav>ul>li:hover .up{width: 100%;text-decoration: none;}
+   #head .headmain .nav>ul>li>a:hover{text-decoration: none;}
+   #head .headmain .arrow{position: absolute;z-index: 2; left: 50%;bottom: -11px;border-top: 11px solid white;border-left: 10.5px solid transparent;border-right: 10.5px solid transparent;transition: 1s left;}
+   /* 头部样式结束 */
+
+   /* 内容区样式开始 */
+   #content{background-color: gray;position: relative;overflow: hidden;width: 100%;}
+   #content>ul{position: absolute;width: 100%;top: 0; transition: 1s top;}
+   #content>ul>li{position: relative;background-size: 100% 100%;overflow: hidden;}
+   #content>ul>li>div{width: 1150px;height: 520px;position: absolute;left: 0;right: 0;top: 0;bottom: 0;margin: auto;}
+    #content .home{background-image: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588765270033&di=c44c85ed7365e8af0fe4b8a5fdc8faae&imgtype=0&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2F78310a55b319ebc45951459f8a26cffc1e17168e.jpg);background-size: 100% 100%;}
+    #content .course{background-image: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588765438933&di=167e677384504ffea571795001fbb642&imgtype=0&src=http%3A%2F%2Fimg01.jituwang.com%2F190321%2F256622-1Z32123311953.jpg);}
+    #content .works{background-image: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588765484566&di=dca65fa7a8cee14030234e55e6053248&imgtype=0&src=http%3A%2F%2Fimg.mp.sohu.com%2Fupload%2F20170704%2Ff538839bf4a64280af6f6ab5c2f7f5ce_th.png);}
+    #content .about{background-image: url(http://i1.download.fd.pchome.net/t_1920x1080/g1/M00/0F/00/ooYBAFUjqpqIbNWqAAuC8dTsUZwAACZBQGcnvAAC4MJ545.jpg);}
+    #content .team{background-image: url(http://gss0.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/0b46f21fbe096b637399aac20c338744eaf8aca4.jpg);}
+    /* 第三屏 */
+    #content .works .works1{margin: 50px 0 100px 50px;}
+    #content .works .works2{margin-left: 50px;}
+    #content .works .works2 .item{float: left;width: 220px;height: 133px;margin: 0 1px;position: relative;overflow: hidden;z-index: 1;}
+    #content .works .works2 .item:last-child{width: 332px;height: 133px;}
+    #content .works .works2 .item .mask{position: absolute;left: 0;top: 0;bottom: 0;right: 0;margin: 0;padding: 10px;
+     background-color: #000000;opacity: 0;color: white;transition: 1s opacity;overflow: hidden;}
+    #content .works .works2 .item .mask .icon{width: 32px;height: 34px;margin: 0 auto;margin-top: 10px;font-size: 26px;transition: 1s;cursor: pointer;}
+    #content .works .works2 .item:hover .mask{opacity: .8;}
+    #content .works .works2 .item .mask .icon:hover{color: teal;}
+    #content .works .works2 .item img{width: 100%;height: 100%;transition: 1s transform;}
+    #content .works .works2 .item:hover img{transform: scale(1.5) rotate(30deg);}
+    #content .works .works3 {width: 167px;height: 191px;position: absolute;left: 900px;top: 170px;z-index: 0;animation: robota 4s linear infinite;
+    background: url(https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2470010905,55941708&fm=26&gp=0.jpg) no-repeat;background-size: 100% 100%;}
+    @keyframes robota{
+      0%{
+      }
+      49%{
+        transform: translateX(-400px) rotateY(0deg);
+      }
+      50%{
+        transform: translateX(-500px) rotateY(180deg);
+      }
+      100%{
+        transform: translateX(0px) rotateY(180deg);
+      }
+    }
+    /* 第三屏结束 */
+
+    /* 第二屏开始 */
+    #content .course .course1{margin: 50px;}
+    #content .course .course2{margin-left: 50px;width: 400px;}
+    #content .course .course3{width: 480px;position: absolute;right: 50px;top: 70px;}
+    #content .course .course3 .item{float: left; width: 120px;height: 132px;
+    position: relative;perspective: 500px;transform-style: preserve-3d;
+    }
+    #content .course .course3 .item::before{content: '+';float: left;position: absolute;width: 10px;height: 10px;left: -5px;
+    top: -5px;color: skyblue;text-align: center;line-height: 10px;}
+    #content .course .course3 .item::after{content: '+';float: left;position: absolute;width: 10px;
+    height: 10px;right: -5px;bottom: -5px;color: skyblue;text-align: center;line-height: 10px;}
+    #content .course .course3 .item .face,#content .course .course3 .item .backface{position: absolute;left: 0;top: 0;height: 100%;
+      width: 100%;box-sizing: border-box;padding: 15px;
+    }
+    #content .course .course3 .item .backface{background-image: url(https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2088824636,2214893273&fm=26&gp=0.jpg) ;
+    }
+    #content .course .course3 .item:nth-child(1) .backface{background-image: url(https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2088824636,2214893273&fm=26&gp=0.jpg) ;
+    }
+    #content .course .course3 .item:nth-child(2) .backface{background-image: url(https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3213243016,861630269&fm=26&gp=0.jpg) ;
+    }
+    #content .course .course3 .item:nth-child(3) .backface{background-image: url(https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2472164204,1475863125&fm=26&gp=0.jpg) ;
+    }
+    #content .course .course3 .item:nth-child(4) .backface{background-image: url(https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3538317904,1911681254&fm=26&gp=0.jpg) ;
+    }
+    #content .course .course3 .item .backface{background-size: 100% 100%!important;transition: 1s transform;}
+    #content .course .course3 .item .face{transform: rotateY(180deg);transition: 1s transform; backface-visibility: hidden;background-color: #009ee0;color: white;}
+    #content .course .course3 .item:hover .face{transform: rotateY(360deg);}
+    #content .course .course3 .item:hover .backface{transform: rotateY(180deg);}
+    /* 第二屏结束 */
+    /* 第一屏开始 */
+    #content .home .home1{width: 100%;height: 100%;perspective: 1000px;transform-style: preserve-3d;}
+    #content .home .home1>li{width: 100%;height: 100%;position: absolute;visibility: hidden;}
+    #content .home .home1>li:nth-child(1){background-color: #dc6c5f;}
+    #content .home .home1>li:nth-child(2){background-color: #95dc84;}
+    #content .home .home1>li:nth-child(3){background-color: #64b9d2;}
+    #content .home .home1>li:nth-child(4){background-color: #000000;}
+    #content .home .home1>li.active{visibility: visible;}
+    #content .home .home1>li.leftHide{visibility: hidden;animation: leftHide 1s linear ;}
+    #content .home .home1>li.rightShow{visibility: visible;animation: rightShow 1s linear ;}
+    @keyframes leftHide{
+      0%{visibility: visible; }
+      50%{transform: translateX(-40%) rotateY(30deg) scale(.8)}
+      100%{transform: translateZ(-200px) rotateY(0) scale(1);}
+    }
+    @keyframes rightShow{
+      0%{ visibility: visible;transform: translateZ(-200px);}
+      50%{transform: translateX(40%) rotateY(-30deg) scale(.8)}
+      100%{transform: translateZ(0);}
+    }
+    #content .home .home1>li.leftShow{visibility: visible;animation: leftShow 1s linear ;}
+    #content .home .home1>li.rightHide{visibility: hidden;animation: rightHide 1s linear ;}
+    @keyframes leftShow{
+      0%{visibility: hidden;}
+      50%{transform: translateX(-40%) rotateY(30deg) scale(.8)}
+      100%{transform: translateZ(0);}
+    }
+    @keyframes rightHide{
+      0%{ visibility: visible;}
+      50%{transform: translateX(40%) rotateY(-30deg) scale(.8)}
+      100%{transform: translateZ(-200px);}
+    }
+    #content .home .home1>li>div{color: white;text-align: center;margin-top: 200px;}
+    #content .home .home2{position: absolute;left: 0;right: 0;bottom: 0; text-align: center;}
+    #content .home .home2>li{border-radius: 50%;width: 20px;height: 20px;background-color: rgba(255, 255, 255, .5);cursor: pointer;
+    display: inline-block;box-shadow: 0 0 6px skyblue;}
+    #content .home .home2>li.active{background-color: white;cursor: default;}
+    /* 第一屏结束 */
+    /* 第四屏开始 */
+      #content .about .about1{margin: 50px 0 100px 50px;}
+      #content .about .about2{margin-left: 50px;width: 400px;}
+      #content .about .about4{width: 357px;height: 998px;position: absolute;left: 50%;top: -50px;z-index: 1;}
+      #content .about3 .item{width: 260px;height: 200px;border: 5px solid rgba(255, 255, 255, .5);
+      position: absolute;border-radius: 8px;z-index: 2;overflow: hidden;transition: 1s;}
+      #content .about3 .item:nth-child(1){left: 750px;top: 50px;}
+      #content .about3 .item:nth-child(2){left: 600px;top: 290px;}
+      #content .about3 .item span,#content .about3 .item ul{width: 100%;height: 100%;position: absolute;overflow: hidden;}
+      #content .about3 .item:nth-child(1) span{background: url(http://img0.imgtn.bdimg.com/it/u=2482947009,1281235749&fm=26&gp=0.jpg);background-size: 100% 100%;
+      transform: scale(1.5);transition: 1s transform;
+      }
+      #content .about3 .item:nth-child(2) span{background: url(http://img5.imgtn.bdimg.com/it/u=973863543,2760175454&fm=26&gp=0.jpg);
+      background-size: 100% 100%;transform: scale(1.5);transition: 1s transform;}
+      #content .about3 .item:nth-child(1):hover span {transform: scale(1);}
+      #content .about3 .item:nth-child(2):hover span {transform: scale(1);}
+      #content .about3 .item li{float: left;position: relative;overflow: hidden;}
+      #content .about3 .item li>img{position: absolute;width: 250px;height: 190px;transition: 1s;}
+    /* 第四屏结束 */
+    /* 第五屏开始 */
+        #content .team .team1{width: 400px;float: left;margin: 50px;transition: 1s;}
+        #content .team .team2{width: 400px;float: right;margin: 50px;transition: 1s;}
+        #content .team .team3{width: 945px;height: 448px;position: absolute;left: 50%;margin-left: -472px;top: 220px;}
+        #content .team .team3 li{width: 135px;height: 448px;background: url(http://img0.imgtn.bdimg.com/it/u=3140611616,1956336842&fm=26&gp=0.jpg) no-repeat;
+        background-size: 945px 448px;float: left;transition: 1s opacity;}
+        #content .team .team3 li:nth-child(1){background-position: 0 0;}
+        #content .team .team3 li:nth-child(2){background-position: -135px 0;}
+        #content .team .team3 li:nth-child(3){background-position: -270px 0;}
+        #content .team .team3 li:nth-child(4){background-position: -405px 0;}
+        #content .team .team3 li:nth-child(5){background-position: -540px 0;}
+        #content .team .team3 li:nth-child(6){background-position: -675px 0;}
+        #content .team .team3 li:nth-child(7){background-position: -810px 0;}
+        #content .team>div canvas{position: absolute;top: 200px;}
+    /* 第五屏结束 */
+    /* 小圆点样式开始 */
+          #content .dot{position: fixed;right: 10px;top: 40%;}
+          #content .dot li{width: 15px;height: 15px;margin-top: 5px;border: 2px solid skyblue;border-radius: 50%;}
+          #content .dot li.active{background-color: slateblue;}
+    /* 小圆点样式结束 */
+   /* 内容区样式结束 */
+   /* 出入场动画开始 */
+          #content .home1,#content .home2{transition: 1s transform,1s opacity;}
+          
+   /* 出入场动画结束 */
+   /* 开机动画开始 */
+          #wrap #mask{height: 100%;width: 100%;position: absolute;z-index: 101;top: 0;}
+          #wrap #mask .up{width: 100%;height: 50%;background-color: #009ee0;transition: 1s height;}
+          #wrap #mask .down{width: 100%;height: 50%;background-color: #009ee0;transition: 1s height;position: absolute;bottom: 0;}
+          #wrap #mask .line{width: 0;height: 4px;background-color: white;position: absolute;
+          left: 0;top: 50%;margin-top: -2px;z-index: 102;transition: 1s width;}
+   /* 开机动画结束 */
+   /* 音乐开始 */
+            .music{position: absolute;top: 57px;margin-left: 10px;border:1px solid #000000;border-radius: 50%;width: 20px;height: 20px;line-height: 20px;cursor: pointer;
+            animation: moveround 3s infinite linear;}
+            @keyframes moveround{
+              0%{
+                transform: rotateZ(0);
+              }
+              100%{
+                transform: rotateZ(360deg);
+              }
+            }
+   /* 音乐结束 */
+  </style>
+</head>
+<body>
+  <section id="wrap">
+    <!-- 流体 -->
+    <header id="head">
+      <!-- 固定布局 -->
+      <div class="headmain">
+        <h1 class="logo">
+          <a href="javascript:;" style='text-indent: -9999px;overflow: hidden;'>
+            jian
+            <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1901195521,929862951&fm=26&gp=0.jpg" style="height: 50px;width: 150px; float: left;" alt="">
+          </a>
+        </h1>
+        <nav class="nav">
+          <ul class="clearfix">
+            <li>
+              <a href="javascript:;">
+                <div class="up glyphicon glyphicon-home"></div>
+                <div class="down glyphicon glyphicon-home"></div>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:;">
+                <div class="up">Course</div>
+                <div class="down">Course</div>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:;">
+                <div class="up">Works</div>
+                <div class="down">Works</div>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:;">
+                <div class="up">About</div>
+                <div class="down">About</div>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:;">
+                <div class="up">Team</div>
+                <div class="down">Team</div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="arrow"></div>
+        <div class="music glyphicon glyphicon-music">
+          <audio src="https://s192.xiami.net/158/7158/390788375/1772515578_1546341805789_239.m4a?ccode=xiami_web_web&expire=86400&duration=85&psid=c1a2fd82d85ab4dad33699da0747247b&ups_client_netip=2409:8a0c:9420:1664:f445:90dd:3847:360&ups_ts=1594096430&ups_userid=0&utid=55lgFxOXDXwCAXSHMGIHfvBn&vid=1772515578&fn=1772515578_1546341805789_239.m4a&vkey=B8ac7b2d428fd013d79d64e3c17731b15" loop autoplay preload="none"></audio>
+        </div>
+      </div>
+    </header>
+    <!-- 内容区 -->
+    <section id="content">
+      <ul>
+        <li class="home">
+          <div>
+            <ul class="home1">
+              <li class="commonTitle active">
+                <div class="item">one palyer</div>
+              </li>
+              <li class="commonTitle">
+                <div class="item">two player</div>
+              </li>
+              <li class="commonTitle">
+                <div class="item">three player</div>
+              </li>
+              <li class="commonTitle">
+                <div class="item">four player</div>
+              </li>
+            </ul>
+            <ul class="home2">
+              <li class="active"></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </div>
+        </li>
+        <li class="course">
+          <div>
+            <header class="course1 commonTitle">
+              <span>KEIHALKFI</span><br>
+              <span>IKDISLIKSP</span><br>
+              <span>FOISLKVI</span><br>
+            </header>
+            <div class="course2 commonText">
+              <p>After learning his achievement in science in a speech,Tom has admired teddy much for his concentration on what he studies.2 years ago I lived in the US as a Chinese teacher because I love teaching language.
+              </p>
+              <p>The difference between "involvement" and "commitment" is like an eggs-and-ham breakfast: the chicken was "involved"- the pig was "committed".</p>
+            </div>
+            <div class="course3">
+              <div class="item">
+                <div class="face">青春不败，建哥最帅</div>
+                <div class="backface"></div>
+              </div>
+              <div class="item">
+                <div class="face">青春不败，建哥最帅</div>
+                <div class="backface"></div>
+              </div>
+              <div class="item">
+                <div class="face">青春不败，建哥最帅</div>
+                <div class="backface"></div>
+              </div>
+              <div class="item">
+                <div class="face">青春不败，建哥最帅</div>
+                <div class="backface"></div>
+              </div>
+              <div class="item">
+                <div class="face">青春不败，建哥最帅</div>
+                <div class="backface"></div>
+              </div>
+              <div class="item">
+                <div class="face">青春不败，建哥最帅</div>
+                <div class="backface"></div>
+              </div>
+              <div class="item">
+                <div class="face">青春不败，建哥最帅</div>
+                <div class="backface"></div>
+              </div>
+              <div class="item">
+                <div class="face">青春不败，建哥最帅</div>
+                <div class="backface"></div>
+              </div>
+              <div class="item">
+                <div class="face">青春不败，建哥最帅</div>
+                <div class="backface"></div>
+              </div>
+              <div class="item">
+                <div class="face">青春不败，建哥最帅</div>
+                <div class="backface"></div>
+              </div>
+              <div class="item">
+                <div class="face">青春不败，建哥最帅</div>
+                <div class="backface"></div>
+              </div>
+              <div class="item">
+                <div class="face">青春不败，建哥最帅</div>
+                <div class="backface"></div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="works">
+          <div>
+            <header class="works1 commonTitle">
+              <span>ADAFASAFS</span><br>
+              <span>DHREFGDNSC</span><br>
+              <span>SAFHJSJKY</span><br>
+            </header>
+            <div class="works2 clearfix">
+              <div class="item">
+                <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1068947765,3190163819&fm=26&gp=0.jpg" alt="">
+                <div class="mask">
+                  <span>青春不败，建哥最帅</span>
+                  <div class="icon"><span class="glyphicon glyphicon-zoom-in"></span></div>
+                </div>
+              </div>
+              <div class="item">
+                <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1778874458,2287009633&fm=26&gp=0.jpg" alt="">
+                <div class="mask">
+                  <span>青春不败，建哥最帅</span>
+                  <div class="icon"><span class="glyphicon glyphicon-zoom-in"></span></div>
+                </div>
+              </div>
+              <div class="item">
+                <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2413283639,2224864004&fm=15&gp=0.jpg" alt="">
+                <div class="mask">
+                  <span>青春不败，建哥最帅</span>
+                  <div class="icon"><span class="glyphicon glyphicon-zoom-in"></span></div>
+                </div>
+              </div>
+              <div class="item">
+                <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=105409472,3217847028&fm=15&gp=0.jpg" alt="">
+                <div class="mask">
+                  <span>青春不败，建哥最帅</span>
+                  <div class="icon"><span class="glyphicon glyphicon-zoom-in"></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="works3"></div>
+          </div>
+        </li>
+        <li class="about">
+          <div>
+            <header class="commonTitle about1">
+              <span>DIE</span><br>
+              <span>APODAJNVI</span><br>
+              <span>KAIEPMFO</span><br>
+            </header>
+            <div class="about2 commonText">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis tenetur dolor laudantium, soluta totam aperiam nam at explicabo ex accusantium. Rerum molestias architecto debitis quam facilis corrupti, dolorem voluptate tenetur facere sed.</p>
+            </div>
+            <div class="about3">
+              <div class="item">
+                <span></span>
+                <ul data-src="http://img0.imgtn.bdimg.com/it/u=2482947009,1281235749&fm=26&gp=0.jpg"></ul>
+              </div>
+              <div class="item">
+                <span></span>
+                <ul data-src="http://img1.imgtn.bdimg.com/it/u=944367795,4265241542&fm=26&gp=0.jpg"></ul>
+              </div>
+            </div>
+            <div class="about4">
+              <canvas width="100%" height="100%"></canvas>
+            </div>
+          </div>
+        </li>
+        <li class="team">
+          <div>
+            <header class="team1 commonTitle">
+              <span>I AM THE</span><br>
+              <span>JIANGE</span><br>
+            </header>
+            <div class="team2">
+              <p class="commonText">Lorem ipsum dolor sit amet consectetur adipisicing elit.  Possimus, quod veritatis sapiente voluptatum enim sint veniam ullam. Modi qui sed dicta animi officia.</p>
+              <p class="commonText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi non dolorem minus laudantium rerum commodi exercitationem eos quia cum vitae accusantium ratione, quam, amet libero doloremque tempore voluptate excepturi? Illo.</p>
+            </div>
+            <ul class="team3">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+      <ol class="dot">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ol>
+    </section>
+    <div id="mask">
+      <div class="up"></div>
+      <div class="down"></div>
+      <div class="line"></div>
+    </div>
+  </section>
+  <script>
+    //头部导航交互
+   var arrow = document.querySelector('#head .headmain .arrow');
+   var li = document.querySelectorAll('#head .headmain>.nav>ul>li');
+   var Up = document.querySelectorAll('#head .up');
+   var dotlis = document.querySelectorAll('.dot li');
+   var teamLis = document.querySelectorAll('.team .team3 li');
+   var flag= 0;
+   headBind()
+   function headBind(){
+    arrow.style.left = li[0].offsetLeft+li[0].offsetWidth/2-arrow.offsetWidth/2+'px';
+    Up[0].style.width = '100%';
+    move();
+   }
+   function move(){
+      for(var i=0;i<Up.length;i++){
+     (function(i){
+      li[i].onclick=function(){
+        arrow.style.left=li[i].offsetLeft+li[i].offsetWidth/2-arrow.offsetWidth/2+'px';
+        Up[i].style.width='100%';
+        Up[flag].style.width='';
+        dotlis[i].classList.add('active');
+        dotlis[flag].classList.remove('active');
+        anarr[i].infun();
+        anarr[flag].outfun();
+        flag = i;
+        ul.style.top = -content.offsetHeight*flag+'px';
+      }
+      dotlis[i].onclick=function(){
+        arrow.style.left=li[i].offsetLeft+li[i].offsetWidth/2-arrow.offsetWidth/2+'px';
+        Up[i].style.width='100%';
+        Up[flag].style.width='';
+        dotlis[i].classList.add('active');
+        dotlis[flag].classList.remove('active');
+        anarr[i].infun();
+        anarr[flag].outfun();
+        flag = i;
+        ul.style.top = -content.offsetHeight*flag+'px'; 
+      }
+     }(i))
+   }
+    }
+   //头部交互结束
+  //  内容区交互开始
+  // 第一屏交互开始
+    var homeLis = document.querySelectorAll('#content .home .home2>li');
+    var homeLi = document.querySelectorAll('#content .home .home1>li');
+    var home1 = document.querySelector('#content .home .home1');
+    var homeFlag = 0;
+    var homeTime = null;
+    var autoPlay = 0;
+    home1.onmouseenter=function(){
+      clearInterval(homeTime);
+    }
+    homeBind();
+    function homeBind(){
+      for(var i=0;i<homeLis.length;i++){
+        homeLis[i].index = i;
+        homeLis[i].onclick=function(){
+          clearInterval(homeTime);
+          for(var j=0;j<homeLis.length;j++){
+            homeLis[j].classList.remove('active')
+          }
+          this.classList.add('active');
+          if(this.index>homeFlag){
+            homeLi[this.index].classList.remove('rightShow');
+            homeLi[this.index].classList.remove('rightHide');
+            homeLi[this.index].classList.remove('leftShow');
+            homeLi[this.index].classList.remove('leftHide');
+            homeLi[this.index].classList.add('rightShow');
+            homeLi[homeFlag].classList.remove('rightShow');
+            homeLi[homeFlag].classList.remove('rightHide');
+            homeLi[homeFlag].classList.remove('leftShow');
+            homeLi[homeFlag].classList.remove('leftHide');
+            homeLi[homeFlag].classList.add('leftHide');
+            
+            homeFlag = this.index;
+          }else{
+            homeLi[this.index].classList.remove('rightShow');
+            homeLi[this.index].classList.remove('rightHide');
+            homeLi[this.index].classList.remove('leftShow');
+            homeLi[this.index].classList.remove('leftHide');
+            homeLi[this.index].classList.add('leftShow');
+            homeLi[homeFlag].classList.remove('rightShow');
+            homeLi[homeFlag].classList.remove('rightHide');
+            homeLi[homeFlag].classList.remove('leftShow');
+            homeLi[homeFlag].classList.remove('leftHide');
+            homeLi[homeFlag].classList.add('rightHide');
+            
+            homeFlag = this.index;
+          } 
+          autoPlay = homeFlag;
+          // 重新开启自动模式
+          // move();
+        }
+      }
+    }
+      function move2(){
+        clearInterval(homeTime)
+        homeTime = setInterval(function(){
+          autoPlay++;
+          if(autoPlay>homeLi.length-1){
+            autoPlay = 0;
+          }
+          for(var j=0;j<homeLis.length;j++){
+            homeLis[j].classList.remove('active')
+          }
+          homeLis[autoPlay].classList.add('active');
+          if(autoPlay>homeFlag){
+            homeLi[autoPlay].classList.remove('rightShow');
+            homeLi[autoPlay].classList.remove('rightHide');
+            homeLi[autoPlay].classList.remove('leftShow');
+            homeLi[autoPlay].classList.remove('leftHide');
+            homeLi[autoPlay].classList.add('rightShow');
+            homeLi[homeFlag].classList.remove('rightShow');
+            homeLi[homeFlag].classList.remove('rightHide');
+            homeLi[homeFlag].classList.remove('leftShow');
+            homeLi[homeFlag].classList.remove('leftHide');
+            homeLi[homeFlag].classList.add('leftHide');
+            
+            homeFlag = autoPlay;
+          }else{
+            homeLi[autoPlay].classList.remove('rightShow');
+            homeLi[autoPlay].classList.remove('rightHide');
+            homeLi[autoPlay].classList.remove('leftShow');
+            homeLi[autoPlay].classList.remove('leftHide');
+            homeLi[autoPlay].classList.add('leftShow');
+            homeLi[homeFlag].classList.remove('rightShow');
+            homeLi[homeFlag].classList.remove('rightHide');
+            homeLi[homeFlag].classList.remove('leftShow');
+            homeLi[homeFlag].classList.remove('leftHide');
+            homeLi[homeFlag].classList.add('rightHide');
+            
+            homeFlag = autoPlay;
+          } 
+        },2000)
+      }
+  // 第一屏交互结束
+  // 第四屏交互开始
+    var canvas = document.querySelector('canvas');
+    var about4 = document.querySelector('.about4');
+    var ULS = document.querySelectorAll('.about3 ul');
+    canvas.width = about4.offsetWidth;
+    canvas.height = about4.offsetHeight;
+    if(canvas.getContext){
+      var ctx = canvas.getContext('2d');
+      ctx.strokeStyle = 'skyblue';
+      ctx.lineWidth = '5px'
+      ctx.moveTo(canvas.width,0);
+      ctx.lineTo(0,canvas.height);
+      ctx.stroke();
+    }
+    picBoom();
+    function picBoom(){
+      for(var i=0;i<ULS.length;i++){
+        change(ULS[i])
+      }
+      function change(a){
+        var src = a.dataset.src;
+        var w = a.offsetWidth/2;
+        var h = a.offsetHeight/2;
+        for(var j=0;j<4;j++){
+          var li = document.createElement('li');
+          li.style.width = w+'px';
+          li.style.height = h+'px';
+          var img = document.createElement('img');
+          img.style.left = -(j%2)*w+'px';
+          img.style.top = -Math.floor(j/2)*h+'px';
+          img.src = src;
+          li.appendChild(img);
+          a.appendChild(li)
+        }
+        var imgs = a.querySelectorAll('li>img');
+        a.onmouseenter=function(){
+          imgs[0].style.top=h+'px';
+          imgs[1].style.left = -2*w+'px';
+          imgs[2].style.left = w+'px';
+          imgs[3].style.top = -2*h+'px';
+        }
+        a.onmouseleave=function(){
+          imgs[0].style.top=0;
+          imgs[1].style.left = -w+'px';
+          imgs[2].style.left = 0+'px';
+          imgs[3].style.top = -h+'px';
+        }
+      }
+    }
+  // 第四屏交互结束
+  // 第五屏交互开始
+  var team3 = document.querySelector('.team3');
+  var teamDiv=document.querySelector('.team>div');
+  var canvasTeam = null;
+  var oc = null;
+  var canvasTime1 = null,canvasTime2=null;;
+     for(var i=0;i<teamLis.length;i++){
+       (function(){
+         teamLis[i].onmouseenter=function(){
+           for(var j=0;j<teamLis.length;j++){
+             teamLis[j].style.opacity=.2;
+           }
+           this.style.opacity=1;
+           addcanvas();
+           canvasTeam = document.querySelector('.team canvas');
+           canvasTeam.onmouseleave=function(){
+            for(var i=0;i<teamLis.length;i++){
+              teamLis[i].style.opacity=1;
+            }
+            oc.remove();
+            oc = null;
+     }
+           oc.style.left = this.offsetLeft+100+'px';
+           Qipao()
+         }
+       })(i)
+     }
+     function addcanvas(){
+       if(!oc){
+         oc = document.createElement('canvas');
+        oc.width=teamLis[0].offsetWidth;
+        oc.height=teamLis[0].offsetHeight*3/4;
+        teamDiv.appendChild(oc);
+       }
+     }
+     function Qipao(){
+      var canvas = document.querySelector('.team canvas');
+      clearInterval(canvasTime1);
+      clearInterval(canvasTime2);
+   canvasTime2 = setInterval(function(){
+        var red = Math.round(Math.random()*255);
+        var blue = Math.round(Math.random()*255);
+        var green = Math.round(Math.random()*255);
+        var r = Math.random()*6+2;
+        var x = canvas.width*Math.random();
+        var y = canvas.height-r;
+        var startX = x;
+        var startY = y;
+        var step = Math.random()*20+10;
+        var deg = 0;
+        arr.push({
+          x:x,
+          y:y,
+          r:r,
+          red:red,
+          blue:blue,
+          green:green,
+          alp:1,
+          r:r,
+          step:step,
+          startX:startX,
+          startY:startY,
+          deg:deg
+        })
+      },100)
+    if(canvas.getContext){
+      var ctx = canvas.getContext('2d');
+      var arr=[];
+     canvasTime1 = setInterval(function(){
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        for(var i=0;i<arr.length;i++){
+          arr[i].deg+=5;
+          arr[i].y = arr[i].startY - arr[i].deg;
+          arr[i].x = arr[i].startX+Math.sin(arr[i].deg/arr[i].step)*arr[i].step*2;
+          if(arr[i].y<=50){
+            arr.splice(i,1)
+          }
+        }
+        for(var i=0;i<arr.length;i++){
+          ctx.beginPath();
+          ctx.arc(arr[i].x,arr[i].y,arr[i].r,0,360);
+          ctx.fillStyle='rgba('+(arr[i].red)+','+(arr[i].blue)+','+(arr[i].green)+','+(arr[i].alp)+')';
+          ctx.fill();
+        }
+      },30)
+    }
+     }
+  // 第五屏交互结束
+  var head = document.getElementById('head');
+  var content = document.getElementById('content');
+  var lis = document.querySelectorAll(' #content>ul>li');
+  var ul = document.querySelector('#content ul');
+  var wheelTime = null;
+  contentBind();
+  window.onresize=function(){
+    contentBind();
+    ul.style.top = -content.offsetHeight*flag+'px';
+    arrow.style.left=li[flag].offsetLeft+li[flag].offsetWidth/2-arrow.offsetWidth/2+'px';
+  }
+   function contentBind(){
+    content.style.height = document.body.offsetHeight - head.offsetHeight+'px';
+    for(var i=0;i<lis.length;i++){
+      lis[i].style.height = document.body.offsetHeight - head.offsetHeight+'px';
+    }
+   }
+   content.onmousewheel = function(e){
+     clearInterval(wheelTime);
+     wheelTime = setTimeout(function(){
+       fn(e);
+     },150)
+   };
+   function fn(ev){
+     var dail = '';
+    dail = ev.wheelDelta>0?'up':'down';
+    switch(dail){
+      case 'up':
+      flag--;
+      if(flag<0){
+        flag=0;
+      }else{
+        ul.style.top = -content.offsetHeight*flag+'px';
+        arrow.style.left=li[flag].offsetLeft+li[flag].offsetWidth/2-arrow.offsetWidth/2+'px';
+        Up[flag].style.width='100%';
+        Up[flag+1].style.width='';
+        dotlis[flag].classList.add('active');
+        dotlis[flag+1].classList.remove('active');
+        anarr[flag].infun();
+        anarr[flag+1].outfun();
+      }
+      break;
+      case 'down':
+      flag++;
+      if(flag>4){
+        flag=4
+      }else{
+        ul.style.top = -content.offsetHeight*flag+'px';
+        arrow.style.left=li[flag].offsetLeft+li[flag].offsetWidth/2-arrow.offsetWidth/2+'px';
+        Up[flag].style.width='100%';
+        Up[flag-1].style.width='';
+        dotlis[flag].classList.add('active');
+        dotlis[flag-1].classList.remove('active');
+        anarr[flag].infun();
+        anarr[flag-1].outfun();
+      }
+      break;
+    }
+   }
+  // 内容区交互结束
+  // 出入场动画
+   var anarr = [
+     {
+       infun:function(){
+         var home1 = document.querySelector('.home1');
+         var home2 = document.querySelector('.home2');
+         home1.style.transform = 'translateY(0)';
+         home2.style.transform = 'translateY(0)';
+         home1.style.opacity=home2.style.opacity=1; 
+         move2();
+       },
+       outfun:function(){
+        var home1 = document.querySelector('.home1');
+         var home2 = document.querySelector('.home2');
+         home1.style.transform = 'translateY(-400px)';
+         home2.style.transform = 'translateY(100px)';
+         home1.style.opacity=home2.style.opacity=0; 
+       }
+     },
+     {
+       infun:function(){},
+       outfun:function(){}
+     },
+     {
+       infun:function(){},
+       outfun:function(){}
+     },
+     {
+       infun:function(){
+        var pic1=document.querySelectorAll('#content .about .item')[0];
+        var pic2=document.querySelectorAll('#content .about .item')[1];
+        pic1.style.transform = 'rotate(-10deg)';
+        pic2.style.transform = 'rotate(-10deg)'
+       },
+       outfun:function(){
+        var pic1=document.querySelectorAll('#content .about .item')[0];
+        var pic2=document.querySelectorAll('#content .about .item')[1];
+        pic1.style.transform = 'rotate(10deg)';
+        pic2.style.transform = 'rotate(10deg)'
+       }
+     },
+     {
+       infun:function(){
+         var team1 = document.querySelector('#content .team1');
+         var team2 = document.querySelector('#content .team2');
+         team1.style.transform = team2.style.transform = 'translateX(0)';
+       },
+       outfun:function(){
+        var team1 = document.querySelector('#content .team1');
+         var team2 = document.querySelector('#content .team2');
+         team1.style.transform = 'translateX(-200px)';
+         team2.style.transform = 'translateX(200px)'
+       }
+     },
+   ]
+   for(var i=0;i<anarr.length;i++){
+     anarr[i].outfun();
+   }
+   setTimeout(function(){anarr[0].infun()},2000)
+  // 出入场动画结束
+  // 开机动画开始
+   var startFlag = 0;
+   var startLine = document.querySelector('#mask .line');
+   var startDiv = document.querySelectorAll('#mask div');
+   var audio = document.querySelector('audio');
+   var music = document.querySelector('.music');
+   for(var i=0;i<8;i++){
+     startFlag++;
+     startLine.style.width = startFlag/8*100+'%';
+   }
+   startLine.addEventListener('transitionend',function(){
+     if(startFlag==8){
+      startDiv[0].style.height=startDiv[1].style.height=0;
+      startLine.style.display='none';
+      }
+   })
+   startDiv[0].addEventListener('transitionend',function(){
+     mask.style.display = 'none';
+     audio.play();
+   })
+   music.onclick = function(){
+     if(audio.paused){
+       audio.play()
+     }else{
+       audio.pause();
+     }
+   }
+  // 开机动画结束
+  </script>
+</body>
+</html>

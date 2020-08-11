@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=2">
+  <link rel="shortcut icon" href="https://www.bilibili.com/favicon.ico" type="image/x-icon">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  <!-- <script src="https://cdn.bootcdn.net/ajax/libs/require.js/2.3.6/require.min.js"></script> -->
+  <style>
+    *{
+      margin:0;
+      padding: 0;
+    }
+    body{
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: linear-gradient(45deg,rgb(181,154,254),rgb(245,189,153));
+    }
+    .container{
+      position: relative;
+      width: 70rem;
+    }
+    .container img{
+      width: 40rem;
+    }
+    .panel{
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin: 10rem 0;
+    }
+    .switch span{
+      color: #ccc;
+      font-size: 1.4rem;
+    }
+    .switch span.active{
+      color: rgb(181, 154, 254);
+    }
+    form{
+      width: 12rem;
+      margin: 2rem 0 0;
+    }
+    form .input{
+      position: relative;
+      margin: 2rem 0;
+      width: 100%;
+      /* height: 2rem;
+      opacity: 1;
+      transition: .4s; */
+      transition: .4s;
+    }
+    .login .email,
+    .login .repeat{
+      display: none;
+    }
+    .input input{
+      outline: none;
+      border: none;
+      background:none;
+      border-bottom: 1px solid rgb(181, 154, 254);
+    }
+    .input::after{
+      content:attr(placeholder);
+      position: absolute;
+      left: 0;
+      top: -100%;
+      color: rgb(129,101,207);
+      font-size: 1.3rem;
+      transition: .3s;
+    }
+    .input.foucs::after{
+      top: -200%;
+      font-size: 1rem;
+    }
+    .login .input.email,
+    .login input.repeat{
+      margin: 0;
+      height: 0;
+      opacity: 0;
+    }
+    form span{
+      cursor: pointer;
+      display: block;
+      color: rgb(129,101,207);
+      font-size: .8rem;
+    }
+    form button{
+      border: none;
+      outline: none;
+      margin: 2rem 0 0;
+      width: 100%;
+      height: 3.5rem;
+      border-radius: 3rem;
+      background: linear-gradient(to right,rgb(181,154,254),rgb(245,189,253));
+      box-shadow: 0 0 8px rgb(181,154,254);
+      cursor: pointer;
+    }
+    .info{
+      width: 100%;
+      height: 50px;
+      text-align: center;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+  </style> 
+</head>
+<body >
+<div class="container">
+  <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3531363455,3798804157&fm=26&gp=0.jpg" alt="">
+  <div class="panel">
+    <div class="content login">
+      <div class="switch">
+        <span id="login" class="active">Login</span>
+        <span>/</span>
+        <span id="register">Register</span>
+      </div>
+      <form action="http://localhost:8080" method="POST">
+        <div class="input email" placeholder="Email"><input type="text" name="email"></div>
+        <div class="input Username" placeholder = "Username"><input type="text" name="username"></div>
+        <div class="input Password" placeholder="Password"><input type="text" name="password"></div>
+        <div class="input repeat" placeholder="Repeat"><input type="text"></div>
+        <span>Forget?</span>
+        <button disabled>Login</button>
+      </form>
+    </div>
+    <div class="info"></div>
+  </div>
+  
+</div>
+<script>
+  var Username = /^[a-zA-z]{4,10}$|^[\u4e00-\u9fa5]{4}$|^([a-zA-z][\u4e00-\u9fa5]{4,6})$|^[\u4e00-\u9fa5][a-zA-z]{4,6}$/;
+  var email = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/
+  var Password = /^(?![A-Z]+$)(?![a-z]+$)(?!\d+$)(?![\W_]+$)\S{6,16}$/;
+  var info = $('.info');var input = $('input')
+
+  $("#login").click(function(){
+    $(".switch span").removeClass("active");
+    $(this).addClass("active");
+    $(this).parents('.content').removeClass("register");
+    $(this).parents('.content').addClass("login");
+  })
+  $("#register").click(function(){
+    $(".switch span").removeClass("active");
+    $(this).addClass("active");
+    $(this).parents('.content').removeClass("login");
+    $(this).parents('.content').addClass("register");
+  })
+  $(".input input").on("focus",function(){
+    $(this).parent().addClass("foucs")
+  })
+  $(".input input").on("blur",function(){
+    $(this).parent().removeClass("foucs")
+  })
+  var result = {}
+  $('.email input').keyup(function(){
+    result.email = email.test($('.email input').val());
+    if(!result.email){
+      info.html("您的邮件输入不合法");
+    }else{
+      info.html("");
+      result.email=true
+    }
+  });
+  $('.Username input').keyup(function(){
+    result.Username = Username.test($('.Username input').val());
+    if(!result.Username){
+      info.html("您的名字输入不合法");
+    }else{
+      info.html("");
+      result.Username=true
+    }
+  })
+  $('.Password input').keyup(function(){
+    result.Password = Password.test($('.Password input').val());
+    if(!result.Password){
+      info.html("您的密码输入不合法");
+    }else{
+      info.html("");
+      result.Password=true
+    }
+  })
+  $('.repeat input').keyup(function(){
+    result.repeat = $('.Password input').val()==$('.repeat input').val()?true:false;
+    if(!result.repeat){
+      info.html("您两次输入的密码不一样")
+    }else{
+      info.html("");
+      result.repeat=true
+    }
+  });
+
+document.onkeyup=function(){
+  if($('.content').hasClass('login')){
+    console.log(result.Username,result.Password)
+   if(result.Username&&result.Password){
+     $('button').prop('disabled',false);
+   }
+  }else{
+    console.log(result.Username&&result.Password&&result.email&&result.repeat)
+    if(result.Username&&result.Password&&result.email&&result.repeat){
+      $('button').prop('disabled',false);
+    }
+  }
+}
+</script>
+</html>

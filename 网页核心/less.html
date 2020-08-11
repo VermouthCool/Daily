@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <title>Document</title>
+  <link rel="stylesheet" href="xieless.css">
+
+  <style>
+    .lun-wrap{position: relative;}
+   .wrap .list{list-style: none;width: 1000%;overflow: hidden;position: absolute;left: 0;top: 0;}
+    a,img{display: block;width: 100%;}
+    .wrap .list li{width: 10%;float: left;}
+     
+     .point li{width: 19px;height: 19px;border-radius: 50%;display: inline-block;background-color: white;}
+     .point li:not(:last-child){margin-right: 5px;}
+     .point li.active{background-color: midnightblue;}
+     .scroll{position: absolute;right: 0;width: 10px;height: 40px;background-color: skyblue;top: 0;z-index: 3;opacity: 0;transition: 0.5s opacity,1s transform;}
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <div class="head">
+      <div class="head-top">
+        <h1 class="logo">
+          <a href="javascript:;">
+            <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2207782987,181736269&fm=26&gp=0.jpg">
+          </a>
+        </h1>
+        <!-- 面包屑导航 -->
+        <a href="javascript:;" class="menuBtn">+</a>
+        <!-- 按钮排 -->
+        <div class="btns">
+          <a href="javascript:;" class="search">搜索</a>
+          <a href="javascript:;">登录</a>
+          <a href="javascript:;">注册</a>
+        </div>
+      </div>
+      <div class="head-bottom">
+        <form action="#" method="post">
+          <input type="text" name="音乐名称" placeholder="青春不败，建哥最帅">
+          <input type="submit" value="搜索">
+        </form>
+      </div>
+        <ul class="mask">
+          <li><a href="javascript:;">首页</a></li>
+          <li><a href="javascript:;">Mv</a></li>
+          <li><a href="javascript:;">悦单</a></li>
+          <li><a href="javascript:;">V榜</a></li>
+          <li><a href="javascript:;">音乐</a></li>
+          <li><a href="javascript:;">商城</a></li>
+          <li><a href="javascript:;">节目</a></li>
+          <li><a href="javascript:;">饭团</a></li>
+          <li><a href="javascript:;">咨询</a></li>
+          <li><a href="javascript:;">下载</a></li>
+          <li><a href="javascript:;">我的家</a></li>
+          <li><a href="javascript:;">热门应用</a></li>
+        </ul>
+    </div>
+    <div class="content">
+      <div>
+      <nav class="nav">
+        <ul class="list">
+          <li class="active"><a href="javascript:;">首页</a></li>
+          <li><a href="javascript:;">Mv</a></li>
+          <li><a href="javascript:;">悦单</a></li>
+          <li><a href="javascript:;">V榜</a></li>
+          <li><a href="javascript:;">音乐</a></li>
+          <li><a href="javascript:;">商城</a></li>
+          <li><a href="javascript:;">节目</a></li>
+          <li><a href="javascript:;">饭团</a></li>
+          <li><a href="javascript:;">咨询</a></li>
+          <li><a href="javascript:;">下载</a></li>
+          <li><a href="javascript:;">我的家</a></li>
+          <li><a href="javascript:;">热门应用</a></li>
+          <li><a href="javascript:;">建哥</a></li>
+          <li><a href="javascript:;">建哥</a></li>
+          <li><a href="javascript:;">建哥</a></li>
+          <li><a href="javascript:;">建哥</a></li>
+          <li><a href="javascript:;">建哥</a></li>
+          <li><a href="javascript:;">建哥</a></li>
+          <li><a href="javascript:;">建哥</a></li>
+          <li><a href="javascript:;">建哥</a></li>
+        </ul>
+      </nav>
+      <div class="wrap">
+        <div class="lun-wrap">
+          <ul class="list">
+            <li><a href="#"><img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1830914723,3154965800&fm=26&gp=0.jpg" alt=""></a></li>
+            <li><a href="#"><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3238317745,514710292&fm=26&gp=0.jpg" alt=""></a></li>
+            <li><a href="#"><img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1796762658,4159569164&fm=26&gp=0.jpg" alt=""></a></li>
+            <li><a href="#"><img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2521791137,386290958&fm=26&gp=0.jpg" alt=""></a></li>
+            <li><a href="#"><img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2985085239,603645669&fm=26&gp=0.jpg" alt=""></a></li>
+          </ul>
+          <ul class="point">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+      </div>
+      <div class="tap-wrap">
+        <div class="tap-head">
+          <h2>Mv主播</h2>
+          <span>更多&gt</span>
+        </div>
+        <div class="tap-nav">
+          <a href="javascript:;">全部</a>
+          <a href="javascript:;">内地</a>
+          <a href="javascript:;">港台</a>
+          <a href="javascript:;">欧美</a>
+          <a href="javascript:;">韩国</a>
+          <a href="javascript:;">日本</a>
+          <div class="smallGreen"></div>
+        </div>
+        <div class="tap-content">
+          <div class="tap-loading">
+           <div class="loading-content">
+            <div class="loading-1"></div>
+            <div class="loading-2"></div>
+            <div class="loading-3"></div>
+            <div class="loading-4"></div>
+           </div>
+          </div>
+          <ul>
+            <li>
+              <a href="http://192.168.1.5:5500/%E7%BD%91%E9%A1%B5%E6%A0%B8%E5%BF%83.html/%E6%B5%8B%E8%AF%95%E4%B8%93%E7%94%A8.html">
+                <img src="http://img0.imgtn.bdimg.com/it/u=3074729906,1721063840&fm=11&gp=0.jpg" alt="">
+                <span>
+                  紫罗兰美香
+                  すみれの美香の体、最高の誘惑</span>
+              </a>
+              <div class="tap-discuss">
+                <div class="left">
+                  <span></span><span>6</span>
+                </div>
+                <div class="right">
+                  <span></span><span>9176</span>
+                </div>
+              </div>
+            </li>
+            <li>
+              <a href="">
+                <img src="http://img2.imgtn.bdimg.com/it/u=1291304791,1554281521&fm=26&gp=0.jpg" alt="">
+                <span>
+                  紫罗兰美香
+                  すみれの美香の体、最高の誘惑</span>
+              </a>
+              <div class="tap-discuss">
+                <div class="left">
+                  <span></span><span>6</span>
+                </div>
+                <div class="right">
+                  <span></span><span>9176</span>
+                </div>
+              </div>
+            </li>
+            <li>
+              <a href="">
+                <img src="http://img4.imgtn.bdimg.com/it/u=3463494476,2130521220&fm=26&gp=0.jpg" alt="">
+                <span>
+                  紫罗兰美香
+                  すみれの美香の体、最高の誘惑</span>
+              </a>
+              <div class="tap-discuss">
+                <div class="left">
+                  <span></span><span>6</span>
+                </div>
+                <div class="right">
+                  <span></span><span>9176</span>
+                </div>
+              </div>
+            </li>
+            <li>
+              <a href="">
+                <img src="http://img5.imgtn.bdimg.com/it/u=1423353917,2616694056&fm=26&gp=0.jpg" alt="">
+                <span>
+                  紫罗兰美香
+                  すみれの美香の体、最高の誘惑</span>
+              </a>
+              <div class="tap-discuss">
+                <div class="left">
+                  <span></span><span>6</span>
+                </div>
+                <div class="right">
+                  <span></span><span>9176</span>
+                </div>
+              </div>
+            </li>
+            <li>
+              <a href="">
+                <img src="http://img5.imgtn.bdimg.com/it/u=2052389848,1664147701&fm=26&gp=0.jpg" alt="">
+                <span>
+                  紫罗兰美香
+                  すみれの美香の体、最高の誘惑</span>
+              </a>
+              <div class="tap-discuss">
+                <div class="left">
+                  <span></span><span>6</span>
+                </div>
+                <div class="right">
+                  <span></span><span>9176</span>
+                </div>
+              </div>
+            </li>
+            <li>
+              <a href="">
+                <img src="http://img0.imgtn.bdimg.com/it/u=4001302058,4004960972&fm=26&gp=0.jpg" alt="">
+                <span>
+                  紫罗兰美香
+                  すみれの美香の体、最高の誘惑</span>
+              </a>
+              <div class="tap-discuss">
+                <div class="left">
+                  <span></span><span>6</span>
+                </div>
+                <div class="right">
+                  <span></span><span>9176</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div class="tap-loading">
+            <div class="loading-content">
+              <div class="loading-1"></div>
+              <div class="loading-2"></div>
+              <div class="loading-3"></div>
+              <div class="loading-4"></div>
+             </div>
+          </div>
+        </div>
+    </div>
+    <div class="tap-wrap">
+      <div class="tap-head">
+        <h2>Mv主播</h2>
+        <span>更多&gt</span>
+      </div>
+      <div class="tap-nav">
+        <a href="javascript:;">全部</a>
+        <a href="javascript:;">内地</a>
+        <a href="javascript:;">港台</a>
+        <a href="javascript:;">欧美</a>
+        <a href="javascript:;">韩国</a>
+        <a href="javascript:;">日本</a>
+        <div class="smallGreen"></div>
+      </div>
+      <div class="tap-content">
+        <div class="tap-loading">
+         <div class="loading-content">
+          <div class="loading-1"></div>
+          <div class="loading-2"></div>
+          <div class="loading-3"></div>
+          <div class="loading-4"></div>
+         </div>
+        </div>
+        <ul>
+          <li>
+            <a href="http://192.168.1.5:5500/%E7%BD%91%E9%A1%B5%E6%A0%B8%E5%BF%83.html/%E6%B5%8B%E8%AF%95%E4%B8%93%E7%94%A8.html">
+              <img src="http://img0.imgtn.bdimg.com/it/u=3074729906,1721063840&fm=11&gp=0.jpg" alt="">
+              <span>
+                紫罗兰美香
+                すみれの美香の体、最高の誘惑</span>
+            </a>
+            <div class="tap-discuss">
+              <div class="left">
+                <span></span><span>6</span>
+              </div>
+              <div class="right">
+                <span></span><span>9176</span>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="">
+              <img src="http://img2.imgtn.bdimg.com/it/u=1291304791,1554281521&fm=26&gp=0.jpg" alt="">
+              <span>
+                紫罗兰美香
+                すみれの美香の体、最高の誘惑</span>
+            </a>
+            <div class="tap-discuss">
+              <div class="left">
+                <span></span><span>6</span>
+              </div>
+              <div class="right">
+                <span></span><span>9176</span>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="">
+              <img src="http://img4.imgtn.bdimg.com/it/u=3463494476,2130521220&fm=26&gp=0.jpg" alt="">
+              <span>
+                紫罗兰美香
+                すみれの美香の体、最高の誘惑</span>
+            </a>
+            <div class="tap-discuss">
+              <div class="left">
+                <span></span><span>6</span>
+              </div>
+              <div class="right">
+                <span></span><span>9176</span>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="">
+              <img src="http://img5.imgtn.bdimg.com/it/u=1423353917,2616694056&fm=26&gp=0.jpg" alt="">
+              <span>
+                紫罗兰美香
+                すみれの美香の体、最高の誘惑</span>
+            </a>
+            <div class="tap-discuss">
+              <div class="left">
+                <span></span><span>6</span>
+              </div>
+              <div class="right">
+                <span></span><span>9176</span>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="">
+              <img src="http://img5.imgtn.bdimg.com/it/u=2052389848,1664147701&fm=26&gp=0.jpg" alt="">
+              <span>
+                紫罗兰美香
+                すみれの美香の体、最高の誘惑</span>
+            </a>
+            <div class="tap-discuss">
+              <div class="left">
+                <span></span><span>6</span>
+              </div>
+              <div class="right">
+                <span></span><span>9176</span>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="">
+              <img src="http://img0.imgtn.bdimg.com/it/u=4001302058,4004960972&fm=26&gp=0.jpg" alt="">
+              <span>
+                紫罗兰美香
+                すみれの美香の体、最高の誘惑</span>
+            </a>
+            <div class="tap-discuss">
+              <div class="left">
+                <span></span><span>6</span>
+              </div>
+              <div class="right">
+                <span></span><span>9176</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div class="tap-loading">
+          <div class="loading-content">
+            <div class="loading-1"></div>
+            <div class="loading-2"></div>
+            <div class="loading-3"></div>
+            <div class="loading-4"></div>
+           </div>
+        </div>
+      </div>
+  </div>
+  <div class="tap-wrap">
+    <div class="tap-head">
+      <h2>Mv主播</h2>
+      <span>更多&gt</span>
+    </div>
+    <div class="tap-nav">
+      <a href="javascript:;">全部</a>
+      <a href="javascript:;">内地</a>
+      <a href="javascript:;">港台</a>
+      <a href="javascript:;">欧美</a>
+      <a href="javascript:;">韩国</a>
+      <a href="javascript:;">日本</a>
+      <div class="smallGreen"></div>
+    </div>
+    <div class="tap-content">
+      <div class="tap-loading">
+       <div class="loading-content">
+        <div class="loading-1"></div>
+        <div class="loading-2"></div>
+        <div class="loading-3"></div>
+        <div class="loading-4"></div>
+       </div>
+      </div>
+      <ul>
+        <li>
+          <a href="http://192.168.1.5:5500/%E7%BD%91%E9%A1%B5%E6%A0%B8%E5%BF%83.html/%E6%B5%8B%E8%AF%95%E4%B8%93%E7%94%A8.html">
+            <img src="http://img0.imgtn.bdimg.com/it/u=3074729906,1721063840&fm=11&gp=0.jpg" alt="">
+            <span>
+              紫罗兰美香
+              すみれの美香の体、最高の誘惑</span>
+          </a>
+          <div class="tap-discuss">
+            <div class="left">
+              <span></span><span>6</span>
+            </div>
+            <div class="right">
+              <span></span><span>9176</span>
+            </div>
+          </div>
+        </li>
+        <li>
+          <a href="">
+            <img src="http://img2.imgtn.bdimg.com/it/u=1291304791,1554281521&fm=26&gp=0.jpg" alt="">
+            <span>
+              紫罗兰美香
+              すみれの美香の体、最高の誘惑</span>
+          </a>
+          <div class="tap-discuss">
+            <div class="left">
+              <span></span><span>6</span>
+            </div>
+            <div class="right">
+              <span></span><span>9176</span>
+            </div>
+          </div>
+        </li>
+        <li>
+          <a href="">
+            <img src="http://img4.imgtn.bdimg.com/it/u=3463494476,2130521220&fm=26&gp=0.jpg" alt="">
+            <span>
+              紫罗兰美香
+              すみれの美香の体、最高の誘惑</span>
+          </a>
+          <div class="tap-discuss">
+            <div class="left">
+              <span></span><span>6</span>
+            </div>
+            <div class="right">
+              <span></span><span>9176</span>
+            </div>
+          </div>
+        </li>
+        <li>
+          <a href="">
+            <img src="http://img5.imgtn.bdimg.com/it/u=1423353917,2616694056&fm=26&gp=0.jpg" alt="">
+            <span>
+              紫罗兰美香
+              すみれの美香の体、最高の誘惑</span>
+          </a>
+          <div class="tap-discuss">
+            <div class="left">
+              <span></span><span>6</span>
+            </div>
+            <div class="right">
+              <span></span><span>9176</span>
+            </div>
+          </div>
+        </li>
+        <li>
+          <a href="">
+            <img src="http://img5.imgtn.bdimg.com/it/u=2052389848,1664147701&fm=26&gp=0.jpg" alt="">
+            <span>
+              紫罗兰美香
+              すみれの美香の体、最高の誘惑</span>
+          </a>
+          <div class="tap-discuss">
+            <div class="left">
+              <span></span><span>6</span>
+            </div>
+            <div class="right">
+              <span></span><span>9176</span>
+            </div>
+          </div>
+        </li>
+        <li>
+          <a href="">
+            <img src="http://img0.imgtn.bdimg.com/it/u=4001302058,4004960972&fm=26&gp=0.jpg" alt="">
+            <span>
+              紫罗兰美香
+              すみれの美香の体、最高の誘惑</span>
+          </a>
+          <div class="tap-discuss">
+            <div class="left">
+              <span></span><span>6</span>
+            </div>
+            <div class="right">
+              <span></span><span>9176</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="tap-loading">
+        <div class="loading-content">
+          <div class="loading-1"></div>
+          <div class="loading-2"></div>
+          <div class="loading-3"></div>
+          <div class="loading-4"></div>
+         </div>
+      </div>
+    </div>
+</div>
+<div class="tap-wrap">
+  <div class="tap-head">
+    <h2>Mv主播</h2>
+    <span>更多&gt</span>
+  </div>
+  <div class="tap-nav">
+    <a href="javascript:;">全部</a>
+    <a href="javascript:;">内地</a>
+    <a href="javascript:;">港台</a>
+    <a href="javascript:;">欧美</a>
+    <a href="javascript:;">韩国</a>
+    <a href="javascript:;">日本</a>
+    <div class="smallGreen"></div>
+  </div>
+  <div class="tap-content">
+    <div class="tap-loading">
+     <div class="loading-content">
+      <div class="loading-1"></div>
+      <div class="loading-2"></div>
+      <div class="loading-3"></div>
+      <div class="loading-4"></div>
+     </div>
+    </div>
+    <ul>
+      <li>
+        <a href="http://192.168.1.5:5500/%E7%BD%91%E9%A1%B5%E6%A0%B8%E5%BF%83.html/%E6%B5%8B%E8%AF%95%E4%B8%93%E7%94%A8.html">
+          <img src="http://img0.imgtn.bdimg.com/it/u=3074729906,1721063840&fm=11&gp=0.jpg" alt="">
+          <span>
+            紫罗兰美香
+            すみれの美香の体、最高の誘惑</span>
+        </a>
+        <div class="tap-discuss">
+          <div class="left">
+            <span></span><span>6</span>
+          </div>
+          <div class="right">
+            <span></span><span>9176</span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <a href="">
+          <img src="http://img2.imgtn.bdimg.com/it/u=1291304791,1554281521&fm=26&gp=0.jpg" alt="">
+          <span>
+            紫罗兰美香
+            すみれの美香の体、最高の誘惑</span>
+        </a>
+        <div class="tap-discuss">
+          <div class="left">
+            <span></span><span>6</span>
+          </div>
+          <div class="right">
+            <span></span><span>9176</span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <a href="">
+          <img src="http://img4.imgtn.bdimg.com/it/u=3463494476,2130521220&fm=26&gp=0.jpg" alt="">
+          <span>
+            紫罗兰美香
+            すみれの美香の体、最高の誘惑</span>
+        </a>
+        <div class="tap-discuss">
+          <div class="left">
+            <span></span><span>6</span>
+          </div>
+          <div class="right">
+            <span></span><span>9176</span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <a href="">
+          <img src="http://img5.imgtn.bdimg.com/it/u=1423353917,2616694056&fm=26&gp=0.jpg" alt="">
+          <span>
+            紫罗兰美香
+            すみれの美香の体、最高の誘惑</span>
+        </a>
+        <div class="tap-discuss">
+          <div class="left">
+            <span></span><span>6</span>
+          </div>
+          <div class="right">
+            <span></span><span>9176</span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <a href="">
+          <img src="http://img5.imgtn.bdimg.com/it/u=2052389848,1664147701&fm=26&gp=0.jpg" alt="">
+          <span>
+            紫罗兰美香
+            すみれの美香の体、最高の誘惑</span>
+        </a>
+        <div class="tap-discuss">
+          <div class="left">
+            <span></span><span>6</span>
+          </div>
+          <div class="right">
+            <span></span><span>9176</span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <a href="">
+          <img src="http://img0.imgtn.bdimg.com/it/u=4001302058,4004960972&fm=26&gp=0.jpg" alt="">
+          <span>
+            紫罗兰美香
+            すみれの美香の体、最高の誘惑</span>
+        </a>
+        <div class="tap-discuss">
+          <div class="left">
+            <span></span><span>6</span>
+          </div>
+          <div class="right">
+            <span></span><span>9176</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div class="tap-loading">
+      <div class="loading-content">
+        <div class="loading-1"></div>
+        <div class="loading-2"></div>
+        <div class="loading-3"></div>
+        <div class="loading-4"></div>
+       </div>
+    </div>
+  </div>
+</div>
+</div>
+  </div>
+  <div class="scroll"></div>
+  <script>
+    document.documentElement.addEventListener('touchmove',(e)=>{
+      e.preventDefault();
+    },{passive:false})
+    ;(function(){
+      var style = document.createElement('style');
+      var size = document.body.clientWidth/16;
+      style.innerHTML = "html{font-size:"+(size)+"px!important}";
+      document.head.appendChild(style);
+    })()
+    // 自制滚动条
+    var scroll = document.querySelector('.scroll');
+    var content = document.querySelector('#wrap .content>div');
+    scroll.style.height = (document.documentElement.clientHeight/content.offsetHeight)*document.documentElement.clientHeight+'px';
+    var scrollMove = {
+      start:function(){
+        scroll.style.opacity = 1;
+      },
+      end:function(){
+        scroll.style.opacity = 0;
+      }
+    }
+    var isX = true;
+    // 按钮切换函数
+    var flag = false;
+    var menuBtn = document.querySelector('.head .menuBtn');
+    var mask = document.querySelector('.head .mask');
+    var menuBtnchange = ()=>{
+      menuBtn.addEventListener('touchstart',(e)=>{
+        e = e||event;
+        var touch = e.changedTouches[0];
+        if(flag){
+          menuBtn.innerHTML = '+';
+          flag = !flag;
+          mask.style.display = 'none';
+        }else{
+          menuBtn.innerHTML = '&#215';
+          flag = !flag;
+          mask.style.display = 'block';
+        }
+        e.stopPropagation();
+      })
+    }
+    menuBtnchange();
+    document.addEventListener('touchstart',function(){
+      if(flag){
+        mask.style.display = 'none';
+        menuBtn.innerHTML = '+';
+        flag=!flag;
+      }
+    })
+    mask.addEventListener('touchstart',function(e){
+      e.stopPropagation();
+    })
+    // 导航栏推拽
+    drag();
+    function drag(){
+      var nav = document.querySelector('.content .nav ');
+      var list = document.querySelector('.content .nav .list');
+      var startY = 0;
+      var elementY = 0;
+      var translateX = 0;
+      var minX = nav.offsetWidth - list.offsetWidth;
+      var lastTime =0;
+      var nowpoint = null;
+      var lastpoint = null;
+      var nowTime = 0;
+      var timeDis = 0;
+      var pointDis = 0;
+   nav.addEventListener('touchstart',function(ev){
+    var touch = ev.changedTouches[0];
+    startX = touch.clientX;
+    startY = touch.clientY;
+    list.style.transition='none';
+    lastTime = new Date().getTime();
+    lastpoint = translateX;
+    // ev.stopPropagation();
+    // pointDis=0;
+   })
+   nav.addEventListener('touchmove',(e)=>{
+    //  e.stopPropagation();
+     var touch = e.changedTouches[0];
+     var now = touch.clientX;
+     elementY = translateX+now-startX;
+    nowTime = new Date().getTime();
+     if(elementY>0){
+       var scale = document.documentElement.clientWidth/(document.documentElement.clientWidth+elementY);
+       elementY = elementY*scale;
+     }else if(elementY<minX){
+      var scale =document.documentElement.clientWidth/(document.documentElement.clientWidth+minX-elementY);
+       elementY = translateX+(now-startX)*scale;
+     }
+     nowpoint=elementY;
+     timeDis = nowTime-lastTime;
+     pointDis = nowpoint-lastpoint;
+     nowpoint = lastpoint;
+     nowTime = lastTime;
+      list.style.transform = "translateX("+(elementY+'px')+")";
+   })
+   nav.addEventListener('touchend',(e)=>{
+    //  e.stopPropagation();
+     var speed = pointDis/timeDis;
+     speed=='NaN'?0:speed;
+     speed=Math.abs(speed)<1?0:speed;
+     var target = speed*200+elementY;
+     var bsr='';
+     if(target>0){
+       translateX = 0;
+       target = 0;
+     }
+     if(target<minX){
+       translateX = minX;
+       target = minX;
+     }
+     list.style.transition = '1s '+bsr+' transform';
+     translateX = target;
+     list.style.transform = 'translateX('+target+'px)';
+   })
+    }
+    // 无缝划屏
+    huaping();
+    function huaping(){
+      var lun = document.querySelector('.lun-wrap');
+   var ul = document.querySelector('.wrap ul');
+  //  复制一份ul
+  ul.innerHTML = ul.innerHTML+ul.innerHTML;
+  var img = document.querySelector('img');
+    var imgs = document.querySelectorAll('img');
+   //解决浏览器的默认行为
+   var startX = 0;
+   var startY = 0;
+   var elementY = 0;
+   var translateX = 0;
+   var isX = false;
+   var isFirst = true;
+   lun.addEventListener('touchstart',function(ev){
+     isX = false;
+     isFirst = true;
+     clearInterval(time);
+    var touch = ev.changedTouches[0];
+    startX = touch.clientX;
+    startY = touch.clientY;
+    ul.style.transition = 'none';
+    if(ul.style.transform =='translateX(0px)'||ul.style.transform ==''){
+      ul.style.transform = "translateX("+(-5*document.documentElement.clientWidth+'px')+")";
+      translateX = -5*document.documentElement.clientWidth;
+      elementX =-5*document.documentElement.clientWidth;
+    }
+    if(ul.style.transform == "translateX("+(-9*document.documentElement.clientWidth+'px')+")"){
+      ul.style.transform == "translateX("+(-4*document.documentElement.clientWidth+'px')+")";
+      translateX = -4*document.documentElement.clientWidth;
+      elementX =-4*document.documentElement.clientWidth;
+    }
+   })
+   lun.addEventListener('touchmove',(e)=>{
+     if(isX){
+       return;
+     }
+     var touch = e.changedTouches[0];
+     var now = touch.clientX;
+     var nowY = touch.clientY;
+    if(isFirst){
+      isFirst = false;
+      if(Math.abs(nowY-startY)>Math.abs(now-startX)){
+      isX = true;
+      return;
+    }
+    }
+      ul.style.transform = "translateX("+(translateX+now-startX+'px')+")";
+      elementX = translateX+now-startX;
+   })
+   lun.addEventListener('touchend',(e)=>{
+     if(isX){
+       return
+     }
+     ul.style.transition= '.5s transform';
+     var index = elementX/document.body.clientWidth;
+     if(index == -5||index ==-4){
+      ul.style.transition= 'none';
+     }
+     index = Math.round(index);
+     ul.style.transform = "translateX("+(index*document.documentElement.clientWidth+'px')+")";
+     translateX = index*document.documentElement.clientWidth;
+     pointFun(-index);
+     autoFlag = -index;
+     autoplay();
+   })
+  //  关于小圆点的方程
+  var pointList = document.querySelectorAll('.point li');
+  var pointFun = (index)=>{
+    for(let i=0;i<pointList.length;i++){
+      pointList[i].classList.remove('active');
+    }
+    pointList[index%5].classList.add('active');
+   }
+  //  关于自动轮播的函数
+  var time = null;
+  var autoFlag = 0;
+  var autoplay = ()=>{
+    time = setInterval(()=>{
+      if(document.hidden){
+        clearInterval(time);
+        autoplay();
+      }else{
+        if(translateX == -9*document.documentElement.clientWidth){
+        ul.style.transition = 'none';
+        ul.style.transform = "translateX("+(-4*document.documentElement.clientWidth+'px')+")";
+        autoFlag = 4;
+      }
+      setTimeout(()=>{
+        ul.style.transition = '2s transform';
+      autoFlag++;
+      pointFun(autoFlag);
+      ul.style.transform = "translateX("+(-autoFlag*document.documentElement.clientWidth+'px')+")";
+      translateX = -autoFlag*document.documentElement.clientWidth;
+      },500)
+      }
+    },3000)
+  }
+  autoplay();
+    }
+    // 切换颜色
+    changeColor();
+    function changeColor(){
+      var lis = document.querySelectorAll('.content>div .nav .list li');
+      var list = document.querySelector('.content>div .nav .list');
+      list.addEventListener('touchstart',function(){
+        this.first = false;
+      })
+      list.addEventListener('touchmove',function(){
+        this.first = true;
+      })
+      list.addEventListener('touchend',function(e){
+        e = e||event;
+        var touch = e.changedTouches[0];
+        if(!this.first){
+          for(var i=0;i<lis.length;i++){
+            lis[i].classList.remove('active');
+          }
+          if(touch.target.nodeName.toUpperCase()==='A'){
+            touch.target.parentNode.classList.add('active');
+          }else if(touch.target.nodeName.toUpperCase()==='LI'){
+            touch.target.classList.add('active');
+          }
+        }
+      })
+    }
+    // css3loading动画
+    loadingAnimation();
+    function loadingAnimation(){
+      var loadings = document.querySelectorAll('.tap-content .loading-content div');
+        for(var i=0;i<loadings.length;i++){
+         loadings[i].style.animationDelay=0.3*(i+1)+'s';
+        }
+    }
+    // tap选项卡切换
+    tap();
+    function tap(){
+      var content = document.querySelectorAll('#wrap .content .tap-content');
+      var wrap = document.querySelector('#wrap .content .tap-wrap');
+      for(var i=0;i<content.length;i++){
+        move(content[i]);
+      }
+      function move(content){
+        content.style.transform = 'translateX('+(-wrap.offsetWidth)+'px)';
+        var start = {x:0,y:0};
+        var element = {x:0,y:0};
+        var translate = {x:0,y:0};
+        var now = {x:0,y:0};
+        var isFirst = true;
+        var isjump = true;
+        element.x = -wrap.offsetWidth;
+        var loading_content=content.querySelectorAll('.loading-content');
+        var smallGreen = content.parentNode.querySelector('.smallGreen');
+        var aNodes = content.parentNode.querySelectorAll('.tap-nav a');
+        var GreenFlag = 0;
+        content.addEventListener('touchstart',(e)=>{
+          if(!isjump){
+            return;
+          }
+            content.style.transition='none';
+            var touch = e.changedTouches[0];
+            start.x = touch.clientX;
+            start.y = touch.clientY;
+            isX = true;
+            isFirst = true;
+            // isjump = true;
+            // e.stopPropagation();
+        })
+        content.addEventListener('touchmove',(e)=>{
+          if(!isX){
+            return;
+          }
+          if(!isjump){
+            return;
+          }
+          var touch = e.changedTouches[0];
+            now.x = touch.clientX;
+            now.y = touch.clientY;
+            if(Math.abs(now.Y-start.y)>Math.abs(now.x-start.x)){
+              isX = false;
+              return;
+            }
+            if(isFirst){
+              isFirst=false;
+              if(Math.abs(now.x-start.x)<Math.abs(now.y-start.y)){
+                isX = false;
+                return;
+              }
+            }
+            if(Math.abs(now.x-start.x)>=wrap.offsetWidth/2){
+              if(isjump){
+                jump();
+              }
+              return;
+            }
+            translate.x = element.x + now.x-start.x;
+            content.style.transform = 'translateX('+translate.x+'px)';
+        })
+        content.addEventListener('touchend',(e)=>{
+          if(!isjump){
+            return;
+          }
+          if(!isX){
+            return;
+          }
+          var touch = e.changedTouches[0];
+          element.x = translate.x;
+          if(Math.abs(now.x-start.x)<wrap.offsetWidth/2){
+            if(now.x-start.x<=0){
+              content.style.transform = 'translateX('+((parseInt(element.x/wrap.offsetWidth))*wrap.offsetWidth)+'px)';
+              element.x = (parseInt(element.x/wrap.offsetWidth))*wrap.offsetWidth;
+            }else{
+              content.style.transform = 'translateX('+((parseInt(element.x/wrap.offsetWidth)-1)*wrap.offsetWidth)+'px)';
+              element.x = (parseInt(element.x/wrap.offsetWidth)-1)*wrap.offsetWidth;
+            }
+          }
+        })
+        function jump(){
+          isjump=false;
+          // if(Math.abs(now.x-start.x)>=wrap.offsetWidth/2){
+            content.style.transition = '0.5s transform linear';
+            if(now.x-start.x<=0){
+              // content.style.transform = 'translateX('+((parseInt(element.x/wrap.offsetWidth)-1)*wrap.offsetWidth)+'px)';
+              // translate.x = (parseInt(element.x/wrap.offsetWidth)-1)*wrap.offsetWidth;
+              content.style.transform = 'translateX('+(-2*wrap.offsetWidth)+'px)';
+              // translate.x = -2*wrap.offsetWidth;
+            }else{
+              // content.style.transform = 'translateX('+((parseInt(element.x/wrap.offsetWidth)+1)*wrap.offsetWidth)+'px)';
+              // translate.x = (parseInt(element.x/wrap.offsetWidth)+1)*wrap.offsetWidth;
+              content.style.transform = 'translateX('+0+'px)';
+              // translate.x = 0;
+            }
+            content.addEventListener('transitionend',fun);
+            function fun(){
+              content.removeEventListener('transitionend',fun);
+              content.style.transition='none';
+              for(var i=0;i<loading_content.length;i++){
+                loading_content[i].style.opacity=1;
+              }
+              now.x-start.x>0?GreenFlag--:GreenFlag++;
+              if(GreenFlag<0){
+                GreenFlag = aNodes.length-1;
+              }else if(GreenFlag>=aNodes.length){
+                GreenFlag=0;
+              }
+              smallGreen.style.transform = 'translateX('+(aNodes[GreenFlag].offsetLeft)+'px)';
+              //发送ajax请求
+              setTimeout(()=>{
+                for(var i=0;i<loading_content.length;i++){
+                  loading_content[i].style.opacity = 0;
+                }
+                content.style.transform = 'translateX('+(-wrap.offsetWidth)+'px)';
+                element.x = -wrap.offsetWidth;
+                isjump=true;
+              },2000)
+            }
+          // }
+        }
+      }
+    }
+    // 小绿的实现
+    //竖向划屏
+    function shuxiang(){
+      var nav = document.querySelector('#wrap ');
+      var list = document.querySelector('#wrap>.content');
+      var startX = 0;
+      var elementY = 0;
+      var translateY = 0;
+      // var last = list.querySelector('.tap-wrap::nth-child(2) .tap-content:last-child');
+      var minX = document.documentElement.offsetHeight - wrap.scrollHeight;
+      var lastTime =0;
+      var nowpoint = null;
+      var lastpoint = null;
+      var nowTime = 0;
+      var timeDis = 0;
+      var pointDis = 0;
+   nav.addEventListener('touchstart',function(ev){
+    //  isX = false;
+    var touch = ev.changedTouches[0];
+    startX = touch.clientX;
+    startY = touch.clientY;
+    list.style.transition='none';
+    lastTime = new Date().getTime();
+    lastpoint = translateY;
+    scrollMove.start();
+    // pointDis=0;
+   })
+   nav.addEventListener('touchmove',(e)=>{
+     if(isX){
+       return;
+     }
+     var touch = e.changedTouches[0];
+     var now = touch.clientY;
+     elementY = translateY+now-startY;
+    nowTime = new Date().getTime();
+     if(elementY>0){
+       var scale = document.documentElement.clientHeight/(document.documentElement.clientHeight+elementY+800);
+       elementY = elementY*scale;
+     }else if(elementY<minX){
+      var scale =document.documentElement.clientHeight/(document.documentElement.clientHeight+minX-elementY);
+       elementY = translateY+(now-startY)*scale;
+     }
+     nowpoint=elementY;
+     timeDis = nowTime-lastTime;
+     pointDis = nowpoint-lastpoint;
+     nowpoint = lastpoint;
+     nowTime = lastTime;
+     var scrollTop = elementY/content.offsetHeight*document.documentElement.clientHeight;
+     scroll.style.transform = 'translateY('+(-scrollTop)+'px)';
+      list.style.transform = "translateY("+(elementY+'px')+")";
+   })
+   nav.addEventListener('touchend',(e)=>{
+     if(isX){
+       scrollMove.end();
+       return;
+     }
+     var speed = pointDis/timeDis;
+     speed=='NaN'?0:speed;
+     speed=Math.abs(speed)<0.5?0:speed;
+     var target = speed*200+elementY;
+     var bsr = '';
+     if(target>0){
+       translateY = 0;
+       target = 0;
+      //  bsr = 'cubic-bezier(.26,1.51,.68,1.54)'
+     }
+     else if(target<minX){
+       translateY = minX;
+       target = minX;
+      //  bsr = 'cubic-bezier(.26,1.51,.68,1.54)'
+     }
+     list.style.transition = '1s '+bsr+' transform';
+     translateY = target;
+     var scrollTop = translateY/content.offsetHeight*document.documentElement.clientHeight;
+     scroll.style.transform = 'translateY('+(-scrollTop)+'px)';
+     list.style.transform = 'translateY('+target+'px)';
+     list.addEventListener('transitionend',function(){
+      scrollMove.end();
+     })
+   })
+    }
+    shuxiang();
+    // 自做滚动条
+  </script>
+</body>
+</html>

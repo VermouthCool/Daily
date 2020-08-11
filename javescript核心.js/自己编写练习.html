@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贪吃蛇</title>
+    <style>
+        .contant{
+            width: 640px;
+            height: 640px;
+            margin: 100px auto;
+            
+            position: relative;
+        }
+        .btn{
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .3);
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 2;
+        }
+        .btn button{
+            border: none;
+            background: none;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            cursor: pointer;
+            outline: none;
+            background-size: 100% 100%;
+        }
+        .start button{
+            background-image: url("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=396995551,3949263024&fm=26&gp=0.jpg");
+            width: 200px;
+            height: 80px;
+            margin-left: -100px;
+            margin-top: -40px;
+        }
+        .stop{
+            display: none;
+        }
+        .stop button{
+            width: 70px;
+            height: 70px;
+            margin-top: -35px;
+            margin-top: -35px;
+            background-image: url("http://img4.imgtn.bdimg.com/it/u=3554401688,2427786498&fm=26&gp=0.jpg");
+        }
+        #swarp{
+            border: 20px solid #7dd9ff;
+            width: 600px;
+            height: 600px;
+            position: relative;
+            background-color: #226175;
+        }
+        #swarp div{
+            width: 20px;
+            height: 20px;
+        }
+        .snakeHead{
+            background-image: url("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1907232668,542451173&fm=26&gp=0.jpg");
+            background-size: cover;
+        }
+        .snakeBody{
+            background-color: #9ddbb1;
+            border-radius: 50%;
+        }
+        .snakeFood{
+            background-image: url("https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=4001697536,1588724260&fm=26&gp=0.jpg");
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="contant">
+        <div class="btn start"><button></button></div>
+        <div class="btn stop"><button></button></div>
+        <div id="swarp">
+
+        </div>
+    </div>
+    <script>
+        var sw=20,sh=20,tr=30,td=30;
+        var food = null;
+        var snake = null;
+        var game = null;
+        var button = document.querySelector(".start button");
+        function Chuang(x,y,classname){
+            this.x=x*sw;
+            this.y=y*sh;
+            this.class=classname;
+            this.she=document.createElement("div");
+            this.she.className=this.class;
+            this.parent=document.getElementById('swarp');
+        }
+        Chuang.prototype.creat=function(){
+            this.she.style.position="absolute";
+            this.she.style.width=sw+'px';
+            this.she.style.height=sh+'px';
+            this.she.style.left=this.x+'px';
+            this.she.style.top=this.y+'px';
+            this.parent.appendChild(this.she);
+        }
+        Chuang.prototype.remove=function(){
+            this.parent.removeChild(this.she);
+            
+        }
+        function Snake(){
+            this.head=null;
+            this.tail=null;
+            this.pos=[];
+            this.directionNum={
+                left:{
+                    x:-1,
+                    y:0
+                },
+                right:{
+                    x:1,
+                    y:0
+                },
+                top:{
+                    x:0,
+                    y:-1
+                },
+                down:{
+                    x:0,
+                    y:1
+                }
+            }
+        }
+        Snake.prototype.init=function(){
+            var snakeHead=new Chuang(2,0,"snakeHead");
+            snakeHead.creat();
+            this.head=snakeHead;
+            this.pos.push([2,0]);//存储蛇头位置
+            var snakeBody1=new Chuang(1,0,"snakeBody");
+            snakeBody1.creat();
+            this.pos.push([1,0])//第一节蛇身的位置
+            var snakeBody2=new Chuang(0,0,"snakeBody");
+            snakeBody2.creat();
+            this.tail=snakeBody2;
+            this.pos.push([0,0]);
+            snakeHead.last=null;
+            snakeHead.next=snakeBody1;
+            // snakeBody1.last=snakeHead;
+            // snakeBody1.next=snakeBody2;
+            snakeBody2.last=snakeBody1;
+            snakeBody2.next=null;
+            this.direction=this.directionNum.right;//蛇的默认行驶方向
+        }
+        Snake.prototype.getnext=function(){
+            var nextpos=[//蛇头要走的下个点的坐标
+                this.head.x/sw+this.direction.x,
+                this.head.y/sh+this.direction.y
+            ]
+            var self=false;
+            this.pos.forEach(function(value){
+                if(nextpos[0]==value[0]&&nextpos[1]==value[1])
+                self=true;
+            })
+            //如果下个点是自己
+            if(self){
+                this.peng.die.call(this);
+                console.log("自己");
+                console.log(nextpos)
+                console.log(this.pos)
+                return;
+                
+            }
+            //下个点是围墙
+            if(nextpos[0]<0||nextpos[0]>29||nextpos[1]<0||nextpos[1]>29){
+                this.peng.die.call(this);
+                console.log('围墙')
+                return;
+            }
+            //下个点时食物
+            if(food&&food.pos[0]==nextpos[0]&&nextpos[1]==food.pos[1]){
+                this.peng.eat.call(this);
+                console.log("食物")
+                return;
+            }
+            //继续走
+            this.peng.move.call(this);
+        }
+        Snake.prototype.peng={
+            move:function(format){
+                var newBody=new Chuang(this.head.x/sw,this.head.y/sh,"snakeBody");
+                this.head.remove();
+                console.log("yichu头")//
+                newBody.next=this.head.next;
+                newBody.next.last=newBody;
+                newBody.last=null;
+                newBody.creat();
+                var newHead=new Chuang(this.head.x/sw+this.direction.x,this.head.y/sh+this.direction.y,"snakeHead");
+                this.head=newHead;
+                newHead.next=newBody;
+                newHead.last=null;
+                newBody.last=newHead;
+                newHead.creat();
+                this.pos.splice(0,0,[this.head.x/sw,this.head.y/sh]);
+                console.log(this.pos)//
+                if(!format){
+                    this.tail.remove();
+                    this.tail=this.tail.last;
+                    this.pos.pop();
+                    console.log("yichu尾巴")
+                   
+                }
+                console.log("移动")
+            },
+            eat:function(){
+                this.peng.move.call(this,true);
+                creatfood();
+                game.score++;
+            },
+            die:function(){
+                game.over();
+            }
+        }
+        snake = new Snake();
+        function creatfood(){
+            var x=null,
+            y=null;
+            var include=true;
+            while(include){
+                x=Math.round(Math.random()*29);
+                y=Math.round(Math.random()*29);
+                snake.pos.forEach(function(value){
+                    if(value[0]!=x&&value[1]!=y)
+                    include=false;
+                })
+            }
+            food = new Chuang(x,y,"snakeFood");
+            food.pos=[x,y];
+        var foodDom = document.querySelector('.snakeFood');
+            if(foodDom){
+                foodDom.style.left=x*sw+'px';
+                foodDom.style.top=y*sh+'px';
+            }else{
+                food.creat();
+            }
+        }
+        function Game(){
+            this.score=0;
+            this.timer=null;
+        }
+        Game.prototype.init=function(){
+            snake.init();
+            creatfood();
+            document.onkeydown=function(ev){
+                if(ev.which==37&&snake.direction!=snake.directionNum.right){//用户按下左键的时候，这条蛇不能正在往右走
+                snake.direction=snake.directionNum.left;
+            }else if(ev.which==38&&snake.direction!=snake.directionNum.down){
+                snake.direction=snake.directionNum.top;
+            }else if(ev.which==39&&snake.direction!=snake.directionNum.left){
+                snake.direction=snake.directionNum.right;
+            }else if(ev.which==40&&snake.direction!=snake.directionNum.top){
+                snake.direction=snake.directionNum.down;
+            }
+            }
+            this.star();
+        }
+        Game.prototype.star=function(){
+           this.timer= setInterval(function(){
+                snake.getnext();
+            },200)
+        }
+        Game.prototype.pause=function(){
+            clearInterval(this.timer);
+        }
+        Game.prototype.over=function(){
+            clearInterval(this.timer);
+            alert("你的得分为"+this.score);
+            var snakewrap=document.getElementById("swarp");
+           snakewrap.innerHTML="";
+            snake = new Snake();
+            game = new Game();
+            // var kaishi=document.querySelector(".star");
+            // kaishi.style.display="block"
+            button.parentNode.style.display="block";
+        }
+        game = new Game();
+        
+        button.onclick=function(){
+            button.parentNode.style.display="none"
+            game.init();
+        }
+        var kuang = document.getElementById("swarp");
+        var pause = document.querySelector(".stop button");
+        kuang.onclick=function(){
+            game.pause();
+            pause.parentNode.style.display="block";
+        }
+        
+           pause.onclick=function(){
+               pause.parentNode.style.display="none";
+               game.star();
+           }
+        
+    </script>
+</body>
+</html>

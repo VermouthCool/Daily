@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <base target="_blank">
+    <style>
+        /* 初始化样式 */
+      body,h1,h2,h3,h4,p{
+          margin: 0;
+      }
+      ul{
+          margin: 0;
+          padding: 0;
+          list-style: none;
+      }
+      .clearfix::after{
+          content: "";
+          display: block;
+          clear: both;
+      }
+      img{
+          border: none;
+          vertical-align: middle;
+      }
+      a{
+          text-decoration: none;
+          color: #3c3c3c;
+      }
+      i{
+          font-style: normal;
+      }
+      input{
+          margin: 0;
+          padding: 0;
+      }
+      button{
+          outline: none;
+      }
+      body{
+          font:12px/1.5 tahoma,arial,'Hiragino Sans GB',\5b8b\4f53,sans-serif;
+          color: #3c3c3c;
+          background-color: #f4f4f4;
+      }
+      .fl{
+          float: left;
+      }
+      .fr{
+          float: right;
+      }
+      .c4{
+          color:#f40;
+      }
+      .c5{
+          color: #f50;
+      }
+      .mr7{
+          margin-right: 7px;
+      }
+      .mt10{
+          margin-top: 10px;
+      }
+      .mr10{
+          margin-right: 10px;
+      }
+      .layer{
+          width: 1190px;
+          margin: 0 auto;
+      }
+      /* 初始化样式结束 */
+      /* 头部信息 */
+      #headMessage li{
+          float: left;
+          line-height: 35px;
+          padding: 0 6px;
+      }
+      #headMessage a{
+          color: #6c6c6c;
+      }
+      #headMessage a.login{
+          color: #f22e00;
+         
+      }
+      #headMessage a:hover{
+          color: #f40;
+      }
+      /* 头部信息结束 */
+      /* 头部搜索 */
+      #headsearch{
+          background-color: #fff;
+          padding: 24px 0 10px 0;
+      }
+      #headsearch h1 a{
+          display: block;
+          width: 190px;
+          height: 58px;
+      }
+      #headsearch .code{
+          border: 1px solid #eee;
+          text-align: center;
+          width: 88px;
+          height: 88px;
+      }
+      #headsearch .code img{
+          width: 72px;
+          height: 72px;
+
+      }
+      #headsearch .search{
+        width: 630px;
+        margin: 0 auto;
+      }
+      #headsearch .searchtab{
+          height: 22px;
+          padding-left: 17px;
+      }
+      #headsearch .searchtab li{
+          float: left;
+          width: 36px;
+          line-height: 22px;
+          
+          margin-right: 4px;
+          text-align: center;
+          color: #f40;
+          cursor: pointer;
+      }
+      #headsearch .searchtab li.active{
+          border-radius: 10px;
+          background:  red;
+          color: #fff;
+          font-weight: bold;
+          background-image: linear-gradient(to right,#ff9000,#ff5000 );
+          
+      }
+      #headsearch .searchtab li:hover{
+          background-color:aqua;
+      }
+      #headsearch .searchcontent{
+          height: 40px;
+      }
+      #headsearch .searchbox{
+          width: 554px;
+          height: 40px;
+          box-sizing: border-box;
+          border: 2px solid #ff5000;
+          border-right: none;
+          border-radius: 20px 0 0 20px;
+          overflow: hidden;
+          position: relative;
+      }
+      #headsearch .searchbox input{
+          width: 490px;
+          height: 36px;
+          line-height: 36px;
+          outline: none;
+          border: none;
+          text-indent: 10px;
+          position: absolute;
+          z-index: 2;
+          background-color: transparent;
+      }
+      #headsearch .searchbox .placeholder{
+          position: absolute;
+          top: 7px;
+          left: 14px;
+      }
+      #headsearch .searchbox .placeholder span{
+        color: #9c9c9c;
+        vertical-align: -3px;
+      }
+      .searchcontent button{
+        width: 74px;
+        height: 40px;
+        font-size: 18px;
+        line-height: 40px;
+        color:#fff;
+        background-image: linear-gradient(to right,#ff9000,#ff5000);
+        border: none;
+        border-radius: 0 20px 20px 0;
+      }
+      #headsearch .hotkey{
+          height: 25px;
+          line-height: 25px;
+      }
+      #headsearch .hotkey a:hover{
+          color: #f50;
+      }
+      /* 头部搜索结束 */
+      /* 导航 */
+      #nav h2{
+        width: 190px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 16px;
+        color: #fff;
+        text-align: center;
+        background-color: #f50;
+      }
+      #nav ul{
+          width: 1000px;
+          background-image: linear-gradient(to right,#ff9000,#ff5000 );
+      }
+      #nav ul li{
+          float: left;
+          line-height: 30px;
+          margin: 0 7px;
+          font-size: 14px;
+          color: #fff;
+          padding: 0 5px;
+      }
+      #nav ul li.size{
+          font-size: 16px;
+      }
+      #nav ul li a{
+        color: #fff;
+        font-weight: bold;
+      }
+      #nav ul li.line{
+          margin: 0;
+          padding: 0;
+      }
+      /* 导航结束 */
+      /* 首屏内容 */
+      #firstscreen .firstleft{
+          width: 890px;
+
+      }
+      .firstright{
+          width: 290px;
+          margin-top: 10px;
+      }
+      .firstright .user{
+          height: 140px;
+          padding-top: 5px;
+      }
+      .firstright .user .avaear{
+          display: block;
+          width: 80px;
+          margin: 0 auto;
+          text-align: center;
+          border-radius: 50%;
+          overflow: hidden;
+      }
+      .firstright .user .username{
+          text-align: center;
+          line-height: 16px;
+      }
+      .firstright .user .members{
+        text-align: center;
+        font-size: 0;
+      }
+      .firstright .user .members a{
+          display: inline-block;
+          font-size: 12px;
+          border-radius: 9px;
+          padding: 0 10px 0 20px;
+          background-color: #ffe4dc; 
+          margin: 0 2px; 
+      }
+      .firstright .user .btn{
+          text-align: center;
+      }
+      .firstright .user .btn button{
+          width: 75px;
+          height: 25px;
+          line-height: 25px;
+          margin: 12px 2px 0 2px;
+          color: #fff;
+          font-weight: bold;
+          border-radius: 4px;
+          border: none;
+          background-image: linear-gradient(to right,#ff9000,#ff5000);
+      }
+      .firstright .tipoff{
+          display: block;
+          height: 26px;
+          line-height: 26px;
+          color: #f40;
+          background-color: #ffe4dc;
+          text-align: center;
+      }
+      .firstright .notice{
+          height: 108px;
+          background-color: #fff;
+      }
+      .firstright .notice .title{
+          text-align: center;
+          font-size: 0;
+          margin-top: 10px;
+      }
+      .firstright .notice .title li{
+          display: inline-block;
+          font-size: 12px;
+          line-height: 20px;
+          padding: 0 4px;
+          margin: 0 10px;
+      }
+      .firstright .notice .title li.active{
+          font-weight: bold;
+          border-bottom: 2px solid #f40;
+      }
+      .firstright .notice .title li>a:hover{
+        color: #f40;
+      }
+      .firstright .notice .content{
+          margin: 0 10px;
+          padding-top: 10px;
+      }
+      .firstright .notice .content>li{
+        height: 25px;
+        line-height: 25px;
+        float: left;
+        width: 130px;
+      }
+      .firstright .notice .content>li a:hover{
+        color: #ff5000;
+      }
+      .firstleft .sidenav{
+          width: 190px;
+          height: 522px;
+          background-color: #fff;
+          border: 1px solid #ff5000;
+          box-sizing: border-box;
+          border-top: none;
+          padding-top: 5px;
+      }
+      .firstleft .sidenav li{
+          height: 32px;
+          line-height: 32px;
+          padding-left: 25px;
+          color: #999;
+          transition: background-color 0.3s;
+          font-size: 14px;
+      }
+      .firstleft .sidenav li:hover{
+          background-color: #ffe4dc;
+          color: #f50;
+      }
+      .firstleft .sidenav li:hover a{
+          color: #f50;
+      }
+      .firstleft .sidenav li a{
+          font-size: 14px;
+          color: #666;
+      }
+      .firstleft .sidenav a:hover{
+          text-decoration: underline;
+      }
+      .img1box{
+          width: 690px;
+          height: 282px;
+          background: #eee;
+          margin-top: 10px;
+          margin-right: 5px;
+          position: relative;
+      }
+      .img2box{
+          width: 690px;
+          height: 220px;
+          
+          margin-top: 10px;
+      }
+      .firstleft .news{
+          width: 890px;
+          height: 100px;
+          background-color: #fff;
+          margin-top: 10px;
+          box-sizing: border-box;
+          padding: 13px 13px 13px 20px;
+      }
+      .firstleft .news .hd h3{
+          width: 129px;
+          height: 26px;
+          text-indent: -9999px;
+      }
+      .firstleft .news .hd{
+          margin-top: 15px;
+      }
+      .firstleft .news .hd p{
+          color: #999;
+          line-height: 24px;
+      }
+      .firstleft .news .newlist{
+          width: 680px;
+          position: relative;
+      }
+      .firstleft .news .newlist h4{
+          line-height: 28px;
+          font-size: 16px;
+          font-weight: normal;
+      }
+      .firstleft .news .newlist p{
+        line-height: 18px;
+        font-size: 14px;
+      }
+      .firstleft .news .newlist h4 a{
+          color: #333;
+      }
+      .firstleft .news .newlist p a{
+          color: #999;
+      }
+      .firstleft .news .newlist h4 a:hover{
+          color: #ff5000;
+      }
+      .firstleft .news .newlist .more{
+          position: absolute;
+          top: 0;
+          right: 0;
+          color: #999;
+      }
+      .firstleft .news .newlist .more:hover{
+          color: #ff5000;
+      }
+      .firstleft .circle{
+          position: absolute;
+          bottom: 15px;
+          left: 50%;
+          background-color:transparent;
+          border-radius: 10px;
+          padding: 3px 0;
+          font-size: 0;
+          margin-left: -15px;
+          display: none;
+      }
+      .firstleft .img1box:hover .circle{
+          display: block;
+      }
+      .firstleft .circle span{
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: #fff;
+          margin: 0 3px;
+          cursor: pointer;
+      }
+      .firstleft .circle span.active{
+          background-color: #ff5000;
+      }
+      .firstleft .img2box .pictitle .text{
+          height: 17px;
+          line-height: 17px;
+      }
+      .firstleft .img2box .pictitle .text .bg{
+          color: #666;
+      }
+      .firstleft .text i{
+        color: #ff1648;
+      }
+      .firstleft .img2box .line{
+        height: 3px;
+        background-color: #ff1648;
+        position: relative;
+      }
+      .firstleft .img2box .line span{
+          position: absolute;
+          left: 0;
+          width: 87px;
+          height: 3px;
+          background-color: #000;
+      }
+      .firstleft .img2box .img{
+          height: 200px;
+          background-color: #fff;
+         display: table-cell;
+         vertical-align: middle;
+      }
+      .firstleft .img2box .ad .title{
+          line-height: 20px;
+          height: 20px;
+      }
+      
+      /* 首屏内容结束 */
+     /* 有好货和爱逛街 */
+
+     /* 有好货和爱逛街结束 */
+     /* 侧边栏 */
+      #tool{
+          width: 50px;
+          height: 350px;
+          
+          position: fixed;
+          top: 100px;
+          right: 40px;
+      }
+      #tool div{
+          height: 350px;
+          border-radius: 8px;
+          overflow: hidden;
+      }
+      #tool a{
+          display: inline-block;
+          width: 50px;
+          height: 50px;
+          background-color: #fff;
+          word-break: keep-all;
+          text-align: center;
+          position: relative;
+      }
+      #tool a:after{
+          content: "";
+          border-bottom: 1px solid #efefef;
+          width: 34px;
+          position: absolute;
+          bottom: 0;
+          left: 8px;
+          
+      }
+      .c6{
+          color: #8d7afb;
+      }
+      .c7{
+          color: #a8c001;
+      }
+     .item6{
+          line-height: 54px;
+      }
+      #tool a:hover,#tool a.active{
+          background-image: linear-gradient(135deg,#ff9000,#ff5000);
+          color: #fff;
+          font-weight: bold;
+      }
+      #tool a:hover::after,#tool a.active::after{
+          border: none;
+      }
+     /* 侧边栏结束 */
+     /* 有好货和爱逛街 */
+      .goods{
+          width: 590px;
+          height: 658px;
+          background-color: #fff;
+          overflow: hidden;
+      }
+      .goods .head{
+          height: 24px;
+          margin:20px 0;
+          padding: 0 20px;
+          line-height: 24px;
+      }
+      .goods h3{
+          font-size:0;
+          font-weight: normal;
+      }
+      .goods h3 i{
+          font-size: 12px;
+          vertical-align: middle;
+          color: #999;
+      }
+      .goods .head .dhange{
+          color: #999;
+      }
+      .goods .list{
+          font-size: 0;
+          text-align: center;
+      }
+      .goods .list li{
+          display: inline-block;
+          width: 180px;
+          margin: 0 2px 35px 2px;
+          text-align: left;
+      }
+      .goods .list li h4{
+          font-size: 16px;
+          height: 28px;
+          font-weight: normal;
+      }
+      .goods .list li h4 a:hover{
+        color: #f40;
+      }
+      .goods .list li .text{
+        height: 24px;
+        line-height: 24px;
+        font-size: 14px;
+        overflow: hidden;
+        margin-top: 11px;
+      }
+      .goods .list li .text a{
+          color:#999;
+
+      }
+      .goods .list li .comment{
+          display: block;
+          height: 22px;
+          line-height: 22px;
+          font-size: 12px;
+          color: #35beff;
+          margin-top: 12px;
+      }
+      .shopping .list li .text{
+          line-height: 22px;
+          height: 44px;
+          font-size: 14px;
+      }
+      .shopping .list li .text a:hover{
+          color: #f40;
+      }
+      .shopping .list li .comment{
+          color: #999;
+      }
+     /* 有好货和爱逛街结束 */
+    </style>
+</head>
+<body>
+    <!-- 头部信息 -->
+    <div id="headMessage" class="clearfix layer" >
+        <ul class="fl">
+            <li><span>中国大陆</span></li>
+            <li>
+                <a href="#" class="login mr7">亲，请登录</a>
+                <a href="#">免费注册</a>
+            </li>
+            <li>
+                <a href="#">手机逛淘宝</a>
+            </li>
+           </ul>
+        <ul class="fr">
+            <li>
+                <a href="#">我的淘宝</a>
+            </li>
+            <li>
+                <a href="#">购物车</a>
+                <strong style="color: #f22e00;">0</strong>
+            </li>
+            <li>
+                <a href="#">商品分类</a>
+            </li>
+            <li style="color: #ddd;">|</li>
+            <li><a href="#">千牛卖家中心</a></li>
+            <li><a href="#">联系客服</a></li>
+            <li><a href="#">网站导航</a></li>
+        </ul>
+        
+    </div>
+    <!-- 头部搜索 -->
+    <div id="headsearch">
+        <div class="clearfix layer">
+            <h1 style="position: relative;"><a href="#" style="text-indent: -9999px;float: left;">淘宝网</a>
+                 <img src="https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3690653756,2755071037&fm=26&gp=0.jpg" style="width: 180px;height: 100px; position: absolute;top: 0;left: 0;">
+            </h1>
+            <div class="fr code">
+                <span class="c5">手机淘宝</span>
+                <img src="http://img4.imgtn.bdimg.com/it/u=750360614,2057340206&fm=26&gp=0.jpg" style="width: 80px;height: 80px;">
+            </div>
+            <div class="search">
+                <ul class="searchtab clearfix" >
+                    <li class="active">宝贝</li>
+                    <li>天猫</li>
+                    <li>店铺</li>
+                </ul>
+                <div class="searchcontent clearfix">
+                    <form action="#">
+                        <div class="searchbox fl">
+                            <input type="text">
+                            <div class="placeholder">
+                                <span>建哥最帅  全体起立</span>
+                            </div>
+                        </div>
+                        <div class="btn fl">
+                            <button type="submit">提交</button>
+                        </div>
+                    </form>
+                   
+                </div>
+                <div class="hotkey">
+                    <a href="#" class="c5">积木</a>
+                    <a href="#">网线</a>
+                    <a href="#">窗帘</a>
+                    <a href="#" class="c5">爬行垫</a>
+                    <a href="#">时尚连衣裙</a>
+                    <a href="#">男士体恤</a>
+                    <a href="#">粽子</a>
+                    <a href="#">沙发</a>
+                    <a href="#" class="c5">风扇</a>
+                    <a href="#">男士内裤</a>
+                    <a href="#">凉席三件套</a>
+                    <a href="#">办工桌</a>
+                    <a href="#">时尚休闲裤</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 导航 -->
+    <div id="nav" class="clearfix layer">
+        <h2 class="fl" >主题市场</h2>
+        <ul class="fl">
+           <li class="size"><a href="#">天猫</a></li>
+           <li class="size"><a href="#">聚划算</a></li>
+           <li class="size"><a href="#">天猫市场</a></li>
+           <li class="line">|</li>
+           <li><a href="#">淘抢购</a></li>
+           <li><a href="#">电器城</a></li>
+           <li><a href="#">司法拍卖</a></li>
+           <li><a href="#">兴农扶贫</a></li>
+           <li><a href="#">淘宝心选</a></li>
+           <li class="line">|</li>
+           <li><a href="#">飞猪旅行</a></li>
+           <li><a href="#">智能生活</a></li>
+           <li><a href="#">苏宁易购</a></li>
+        </ul>
+    </div>
+    <!-- 首屏内容 -->
+    <div id="firstscreen" class="clearfix layer">
+        <!-- 左边的内容 -->
+        <div class="firstleft fl">
+            <!-- 侧边导航 -->
+            <div class="sidenav fl">
+                <ul>
+                    <li>
+                        <a href="#">女装</a> / <a href="#">男装</a> / <a href="#">内衣</a>
+                    </li>
+                    <li>
+                        <a href="#">内衣</a>
+                        <a href="#">男生</a>
+                        <a href="#">女装</a>
+                    </li>
+                    <li>
+                        <a href="#">女装</a> / <a href="#">男装</a> / <a href="#">内衣</a>
+                    </li>
+                    <li>
+                        <a href="#">女装</a> / <a href="#">男装</a> / <a href="#">内衣</a>
+                    </li>
+                    <li>
+                        <a href="#">女装</a> / <a href="#">男装</a> / <a href="#">内衣</a>
+                    </li>
+                    <li>
+                        <a href="#">女装</a> / <a href="#">男装</a> / <a href="#">内衣</a>
+                    </li>
+                    <li>
+                        <a href="#">女装</a> / <a href="#">男装</a> / <a href="#">内衣</a>
+                    </li>
+                    <li>
+                        <a href="#">女装</a> / <a href="#">男装</a> / <a href="#">内衣</a>
+                    </li>
+                    <li>
+                        <a href="#">女装</a> / <a href="#">男装</a> / <a href="#">内衣</a>
+                    </li>
+                    <li>
+                        <a href="#">女装</a> / <a href="#">男装</a> / <a href="#">内衣</a>
+                    </li>
+                    <li>
+                        <a href="#">女装</a> / <a href="#">男装</a> / <a href="#">内衣</a>
+                    </li>
+                    <li>
+                        <a href="#">女装</a> / <a href="#">男装</a> / <a href="#">内衣</a>
+                    </li>
+                    <li>
+                        <a href="#">女装</a> / <a href="#">男装</a> / <a href="#">内衣</a>
+                    </li>
+                    <li>
+                        <a href="#">女装</a> / <a href="#">男装</a> / <a href="#">内衣</a>
+                    </li>
+                    <li>
+                        <a href="#">女装</a> / <a href="#">男装</a> / <a href="#">内衣</a>
+                    </li>
+                    <li>
+                        <a href="#">女装</a> / <a href="#">男装</a> / <a href="#">内衣</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- 图片1容器 -->
+            <div class="img1box fr" style="overflow: hidden;">
+                <div class="pic fl">
+                    <div class="img">
+                        <a href="#"><img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2529275834,4198965608&fm=26&gp=0.jpg" style="height: 282px; width:700px;"  alt=""></a>
+                    </div>
+                    <div class="circle">
+                        <span class="active"></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+                <!-- <div class="ad fr">
+                    <a href="#"><img src="http://img1.imgtn.bdimg.com/it/u=1596601394,2352174197&fm=15&gp=0.jpg" style="height: 282px;" alt=""></a>
+                </div> -->
+            </div>
+            <!-- 图片2容器 -->
+            <div class="img2box fr">
+                <div class="pic fl">
+                    <div class="pictitle">
+                        <div class="text clearfix">
+                            <span class="fl bg">理想生活上天猫</span>
+                            <span class="fr"><i>1</i>/6</span>
+                        </div>
+                        <div class="line">
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="img">
+                        <a href="#"><img src="http://img4.imgtn.bdimg.com/it/u=2138592092,1783398746&fm=26&gp=0.jpg" style="width: 220px; height: 220px;" alt=""></a>
+                        <a href="#"><img src="http://img2.imgtn.bdimg.com/it/u=3900295755,4177261989&fm=26&gp=0.jpg" style="width: 220px; height: 220px;" alt=""></a>
+                    </div>
+                </div>
+                <div class="ad fr">
+                    <p class="title">今日特卖</p>
+                    <a href="#"><img src="http://img4.imgtn.bdimg.com/it/u=3798765334,571681696&fm=26&gp=0.jpg" style="height: 220px;width: 220px;" alt=""></a>
+                </div>
+                
+            </div>
+            <!-- 淘宝头条 -->
+            <div class="news fl">
+                <div class="hd fl">
+                    <h3 style="position: relative;">淘宝头条
+                        <a href="#"><img src="http://img5.imgtn.bdimg.com/it/u=4202228181,2763930774&fm=26&gp=0.jpg" style="width:180px; height:100px;position: absolute;top: -28px;right: -30px; " alt=""></a>
+                        
+                    </h3>
+                    <p style="display: block;">让你的生活更有趣</p>
+                </div>
+                <div class="newlist fr">
+                    <a href="#" class="img fl"><img src="http://img3.imgtn.bdimg.com/it/u=1965180960,1320665127&fm=26&gp=0.jpg" style="height: 87px;" alt=""></a>
+                    <h4><a href="#">微漫酱访谈第三期：超萌舞见弥音音！</a>
+                        
+                    </h4>
+                    <p><a href="#">哈喽，大家好，我是你们可爱的微漫酱，我们今天请到了一位舞见小姐姐来做客我们的访谈室，她就是弥音音</a></p>
+                    <a href="#" class="more">更多></a>
+                </div>
+            </div>
+        </div>
+        <!-- 右边的内容 -->
+        <div class="firstright fr">
+            <div class="user">
+                <a href="#" class="avaear"><img src="https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1104018608,3551196070&fm=115&gp=0.jpg" style="width: 80px;height: 80px;" alt=""></a>
+                <p class="username">hi 你好</p>
+                <p class="members">
+                    <a href="#" class="gold">
+                        领淘金币抵钱
+                    </a>
+                    <a href="#" class="club">
+                        会员俱乐部
+                    </a>
+                </p>
+                <div class="btn">
+                    <button class="login" style="width: 92px;">登录 </button>
+                    <button class="register">注册</button>
+                    <button class="shop">开店</button>
+                </div>
+            </div>
+            <a href="#" class="tipoff" style="margin-top: 20px;">
+                <span>网上有害信息举报</span>
+                <i>></i>
+            </a>
+            <div class="notice">
+                <ul class="title">
+                    <li class="active"><a href="#">公告</a></li>
+                    <li><a href="#">规则</a></li>
+                    <li><a href="#">论坛</a></li>
+                    <li><a href="#">安全</a></li>
+                    <li><a href="#">公益</a></li>
+                </ul>
+                <ul class="content clearfix">
+                    <!-- <li class="item1"><a href="#">天猫618进入热身 84个品牌在天猫共获得4.3亿粉丝</a></li> -->
+                    <li><a href="#">天猫618五折卖车</a></li>
+                    <li><a href="#">天猫618五折卖车</a></li>
+                    <li><a href="#">天猫618五折卖车</a></li>
+                    <li><a href="#">天猫618直播间观看指南</a></li>
+                </ul>
+            </div>
+            <div style="background-color: #fff;">
+                <img src="http://img1.imgtn.bdimg.com/it/u=2813857574,3867863127&fm=26&gp=0.jpg" style="width: 290px;height: 290px;" alt="">
+            </div>
+        </div>
+        
+    </div>
+    <!-- 有好货与爱逛街 -->
+    <div class="clearfix layer" style="margin-top: 10px;">
+        <div class="goods fl">
+            <div class="head clearfix">
+                <h3 class="fl">
+                    <i>与品质生活不期而遇</i>
+                </h3>
+                <a href="" class="fr dhange">换一换</a>
+            </div>
+            <ul class="list">
+                <li>
+                    <a href="#"><img src="http://img5.imgtn.bdimg.com/it/u=3181496780,2377558171&fm=26&gp=0.jpg" style="width: 150px;height: 200px;" alt=""></a>
+                    <h4>
+                        <a href="#">
+                            max破产都想买的口红
+                        </a>
+                    </h4>
+                    <p class="text"><a href="#">破产姐妹max最爱的Tarate的哑光口红</a></p>
+                    <a href="#" class="comment">
+                        <i>5920 人说好</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://img5.imgtn.bdimg.com/it/u=3181496780,2377558171&fm=26&gp=0.jpg" style="width: 150px; height: 200px;" alt=""></a>
+                    <h4>
+                        <a href="#">
+                            max破产都想买的口红
+                        </a>
+                    </h4>
+                    <p class="text"><a href="#">破产姐妹max最爱的Tarate的哑光口红</a></p>
+                    <a href="#" class="comment">
+                        <i>5920 人说好</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://img5.imgtn.bdimg.com/it/u=3181496780,2377558171&fm=26&gp=0.jpg" style="width: 150px;height: 200px;" alt=""></a>
+                    <h4>
+                        <a href="#">
+                            max破产都想买的口红
+                        </a>
+                    </h4>
+                    <p class="text"><a href="#">破产姐妹max最爱的Tarate的哑光口红</a></p>
+                    <a href="#" class="comment">
+                        <i>5920 人说好</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://img5.imgtn.bdimg.com/it/u=3181496780,2377558171&fm=26&gp=0.jpg" style="width: 150px;height: 200px;" alt=""></a>
+                    <h4>
+                        <a href="#">
+                            max破产都想买的口红
+                        </a>
+                    </h4>
+                    <p class="text"><a href="#">破产姐妹max最爱的Tarate的哑光口红</a></p>
+                    <a href="#" class="comment">
+                        <i>5920 人说好</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://img5.imgtn.bdimg.com/it/u=3181496780,2377558171&fm=26&gp=0.jpg" style="width: 150px;height: 200px;" alt=""></a>
+                    <h4>
+                        <a href="#">
+                            max破产都想买的口红
+                        </a>
+                    </h4>
+                    <p class="text"><a href="#">破产姐妹max最爱的Tarate的哑光口红</a></p>
+                    <a href="#" class="comment">
+                        <i>5920 人说好</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://img5.imgtn.bdimg.com/it/u=3181496780,2377558171&fm=26&gp=0.jpg" style="width: 150px;height: 200px;" alt=""></a>
+                    <h4>
+                        <a href="#">
+                            max破产都想买的口红
+                        </a>
+                    </h4>
+                    <p class="text"><a href="#">破产姐妹max最爱的Tarate的哑光口红</a></p>
+                    <a href="#" class="comment">
+                        <i>5920 人说好</i>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+        <div class="goods fr shopping">
+            <div class="head clearfix">
+                <h3 class="fl">
+                    <i>献给聪明可爱的你</i>
+                </h3>
+                <a href="" class="fr dhange">换一换</a>
+            </div>
+            <ul class="list">
+                <li>
+                    <a href="#"><img src="http://img4.imgtn.bdimg.com/it/u=277545237,10055839&fm=26&gp=0.jpg" style="width: 150px;height: 200px;" alt=""></a>
+                    <p class="text"><a href="#">[饰物] 925纯银小花迷你耳钉女儿环女气质复古会动的耳钉小耳坠</a></p>
+                    <a href="#" class="comment">
+                        <i>爱逛*****021</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://img4.imgtn.bdimg.com/it/u=277545237,10055839&fm=26&gp=0.jpg" style="width: 150px;height: 200px;" alt=""></a>
+                    <p class="text"><a href="#">[饰物] 925纯银小花迷你耳钉女儿环女气质复古会动的耳钉小耳坠</a></p>
+                    <a href="#" class="comment">
+                        <i>爱逛*****021</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://img4.imgtn.bdimg.com/it/u=277545237,10055839&fm=26&gp=0.jpg" style="width: 150px;height: 200px;" alt=""></a>
+                    <p class="text"><a href="#">[饰物] 925纯银小花迷你耳钉女儿环女气质复古会动的耳钉小耳坠</a></p>
+                    <a href="#" class="comment">
+                        <i>爱逛*****021</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://img4.imgtn.bdimg.com/it/u=277545237,10055839&fm=26&gp=0.jpg" style="width: 150px;height: 200px;" alt=""></a>
+                    <p class="text"><a href="#">[饰物] 925纯银小花迷你耳钉女儿环女气质复古会动的耳钉小耳坠</a></p>
+                    <a href="#" class="comment">
+                        <i>爱逛*****021</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://img4.imgtn.bdimg.com/it/u=277545237,10055839&fm=26&gp=0.jpg" style="width: 150px;height: 200px;" alt=""></a>
+                    <p class="text"><a href="#">[饰物] 925纯银小花迷你耳钉女儿环女气质复古会动的耳钉小耳坠</a></p>
+                    <a href="#" class="comment">
+                        <i>爱逛*****021</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://img4.imgtn.bdimg.com/it/u=277545237,10055839&fm=26&gp=0.jpg" style="width: 150px;height: 200px;" alt=""></a>
+                    <p class="text"><a href="#">[饰物] 925纯银小花迷你耳钉女儿环女气质复古会动的耳钉小耳坠</a></p>
+                    <a href="#" class="comment">
+                        <i>爱逛*****021</i>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+    <!-- 侧栏 -->
+    <div id="tool">
+        <div class="btn" >
+            <a href="#" class="c4 active">爱逛 好货</a>
+            <a href="#" class="c5">好店 直播</a>
+            <a href="#" class="c6">品质 特色</a>
+            <a href="#" class="c7">实惠 热卖</a>
+            <a href="#" class="c4">猜你 喜欢</a>
+            <a href="#" class="item6">反馈</a>
+            <a href="#" class="">暴恐 举报</a>
+        </div>
+    </div>
+</body>
+</html>
