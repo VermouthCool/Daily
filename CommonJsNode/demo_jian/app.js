@@ -15,12 +15,10 @@ app.use(express.static("../../网页核心"))
 app.listen(8080,function(err){
     if(!err) console.log("成功建立服务器");
 });
-var ui = require('./moudle/moudle1');
-app.use(ui);
+var ui = require('./moudle/moudle2');
+
 var {resolve} = require('path');
 app.set('view engine','ejs');
 app.set('views','../../网页核心');
 var data = [{name:'jiange',age:18},{name:'liqiang',age:19}];
-app.get('/jian',function(req,res){
-    res.render('moban',{data});
-})
+app.use(ui);

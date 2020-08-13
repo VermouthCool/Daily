@@ -1,8 +1,11 @@
 //ui路由
 var rotuer = require("express");
 var app = new rotuer.Router();  //路由器
+var parser = require('cookie-parser');
+var session = require('express-session');
+app.use(parser());
 app.get('/',function(req,res){
-    res.sendFile("D:/自己编程前端练习文件/网页核心/login.html")
+    res.render('login',{err:''});
 });
 var mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost:27017/demo",{
@@ -35,6 +38,7 @@ var rule = new Schema({
         default:Date.now()
     }
 })
+var jian = 322;
 var moudle = mongoose.model("login",rule);
 app.post('/',function(req,res){
     app.use(rotuer.urlencoded({extended:true}));
@@ -49,21 +53,48 @@ app.post('/',function(req,res){
                 res.send('<h1>该用户已存在</h1>');
                 return
             }
-            res.send('<h1>注册成功</h1>');
-            moudle.create({email,username,password})
+            moudle.create({email,username,password},function(err,data){
+                res.cookie('_id',data._id,{maxAge:1000*30});
+                 //这一步那四个过程解决
+                res.redirect('/user_center')
+            });
             console.log(`邮箱为${email}用户名为${username}的用户注册成功${Date.now()}`);
             return
         })
+        return;
     }
     if(password&&username){
         moudle.findOne({username,password},function(err,data){
             if(err) console.log(err);
             if(data){
-                res.send('登录成功');
+                res.cookie('_id',data._id,{maxAge:1000*30});
+                // req.session._id = data._id; 
+                res.redirect('/user_center');
                 return
             }
-            res.send('用户名或者密码输入错误')
+            res.render('login.ejs',{err:'账号输入有误'});
         })
+    }
+});
+app.get('/user_center',function(req,res){
+    //1.检查cookie带来的编号
+    //2.查找对应的session
+    //没找到 —_id则为null
+    var {_id} = req.cookies
+    // var {_id} = req.session;
+    if(_id){
+        moudle.findOne({_id},function(err,data){
+            if(!err&&data){
+                res.render('个人中心',{name:data.username});
+                console.log(`${data.username}成功进入个人中心`)
+                return
+            }
+            if(!data){
+                res.redirect('/');
+            }
+        })
+    }else{
+        res.redirect('/')
     }
 })
 module.exports = app;
